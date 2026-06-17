@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rekrutacja & Cennik — sobie…Rajski Domek | Żłobek Poznań</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --c-primary:#F07838;--c-primary-dark:#D45E20;--c-primary-soft:#FEF0E6;
+  --c-teal:#6AAAB8;--c-teal-dark:#4A8A98;--c-teal-soft:#E0EFF3;--c-teal-frame:#BECFDA;
+  --c-bg-cream:#F2E5CC;--c-bg-topbar:#D8E8EF;
+  --c-dark:#1A2B35;--c-text:#3A4A54;--c-muted:#7A8E98;
+  --c-border:#E2DDD6;--c-bg:#FFFFFF;--c-bg-soft:#F8F6F3;--c-surface:#FFFFFF;
+  --font-head:'Nunito',sans-serif;--font-body:'Inter',sans-serif;--font-sketch:'Caveat',cursive;
+  --r-sm:12px;--r-md:20px;--r-lg:32px;--r-pill:100px;
+  --shadow-sm:0 2px 12px rgba(0,0,0,0.06);--shadow-md:0 6px 28px rgba(0,0,0,0.08);--shadow-lg:0 12px 48px rgba(0,0,0,0.11);
+  --max-width:1180px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);font-size:15px;line-height:1.7;color:var(--c-text);background:var(--c-bg);-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+h1{font-family:var(--font-head);font-size:52px;font-weight:900;line-height:1.08;color:var(--c-dark);letter-spacing:-1.5px;}
+h2{font-family:var(--font-head);font-size:38px;font-weight:800;line-height:1.15;color:var(--c-dark);letter-spacing:-0.5px;}
+h3{font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--c-dark);}
+h4{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--c-dark);}
+.eyebrow{font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--c-primary);display:block;margin-bottom:12px;}
+.container{max-width:var(--max-width);margin:0 auto;padding:0 40px;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:var(--r-pill);font-family:var(--font-body);font-size:14px;font-weight:700;cursor:pointer;border:2px solid transparent;transition:all 0.2s ease;white-space:nowrap;}
+.btn-primary{background:var(--c-primary);color:white;border-color:var(--c-primary);}
+.btn-primary:hover{background:var(--c-primary-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,120,56,0.35);}
+.btn-outline{background:transparent;color:var(--c-primary);border-color:var(--c-primary);}
+.btn-outline:hover{background:var(--c-primary-soft);transform:translateY(-2px);}
+.btn-white{background:white;color:var(--c-primary);border-color:white;}
+.btn-white:hover{background:rgba(255,255,255,0.92);transform:translateY(-2px);}
+.btn-dark{background:var(--c-dark);color:white;border-color:var(--c-dark);}
+.btn-dark:hover{background:#243545;transform:translateY(-2px);}
+.btn-teal{background:var(--c-teal);color:white;border-color:var(--c-teal);}
+.btn-teal:hover{background:var(--c-teal-dark);transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:var(--c-muted);border-color:transparent;padding:13px 18px;}
+.btn-ghost:hover{color:var(--c-primary);background:var(--c-primary-soft);}
+.btn-sm{padding:9px 20px;font-size:13px;}
+.btn-lg{padding:18px 40px;font-size:16px;}
+/* TOPBAR */
+.topbar{background:var(--c-bg-topbar);height:46px;display:flex;align-items:center;}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.topbar-left{display:flex;gap:24px;align-items:center;}
+.topbar-left a{color:var(--c-text);font-size:12px;display:flex;align-items:center;gap:7px;transition:color 0.15s;}
+.topbar-left a:hover{color:var(--c-primary);}
+.topbar-left svg{color:var(--c-teal);}
+.topbar-right a{color:var(--c-muted);width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:all 0.15s;}
+.topbar-right a:hover{color:var(--c-teal-dark);background:rgba(106,170,184,0.15);}
+/* NAVBAR */
+.navbar{background:var(--c-surface);height:80px;border-bottom:1px solid var(--c-border);position:sticky;top:0;z-index:200;box-shadow:var(--shadow-sm);}
+.navbar .container{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.nav-logo{font-family:var(--font-head);font-size:20px;font-weight:900;color:var(--c-teal);display:flex;align-items:center;gap:10px;white-space:nowrap;flex-shrink:0;letter-spacing:-0.3px;}
+.nav-logo .accent{color:var(--c-primary);}
+.nav-logo .logo-mark{width:38px;height:38px;background:var(--c-teal-soft);border-radius:12px;display:flex;align-items:center;justify-content:center;}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--c-text);padding:7px 13px;border-radius:var(--r-sm);transition:all 0.15s;}
+.nav-links a:hover,.nav-links a.active{color:var(--c-primary);background:var(--c-primary-soft);}
+.nav-actions{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+/* PAGE HERO */
+.page-hero{background:var(--c-primary);padding:64px 0 80px;position:relative;overflow:hidden;}
+.phd{position:absolute;pointer-events:none;}
+.phd-1{width:500px;height:500px;background:rgba(255,255,255,0.07);border-radius:45% 55% 60% 40% / 55% 45% 55% 45%;top:-200px;right:-80px;}
+.phd-2{width:280px;height:280px;background:rgba(255,255,255,0.06);border-radius:50%;bottom:-100px;left:60px;}
+.phd-3{width:160px;height:160px;background:rgba(255,255,255,0.05);border-radius:50%;top:40px;left:40%;}
+.phd-ring{width:240px;height:240px;border:2px dashed rgba(255,255,255,0.18);border-radius:50%;top:-50px;right:160px;}
+.page-hero .container{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;align-items:center;gap:48px;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:20px;}
+.breadcrumb a{color:rgba(255,255,255,0.6);}
+.breadcrumb a:hover{color:white;}
+.page-hero h1{color:white;margin-bottom:14px;}
+.page-hero p{color:rgba(255,255,255,0.82);font-size:18px;max-width:520px;line-height:1.65;margin-bottom:24px;}
+.hero-open-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:var(--r-pill);padding:10px 20px;}
+.open-dot{width:10px;height:10px;background:var(--c-primary);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+.hero-open-badge span{color:white;font-size:14px;font-weight:600;}
+.hero-contact-card{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);border-radius:var(--r-lg);padding:32px 36px;text-align:center;flex-shrink:0;}
+.hero-contact-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:12px;}
+.hero-phone{font-family:var(--font-sketch);font-size:48px;font-weight:700;color:white;line-height:1;margin-bottom:6px;}
+.hero-email{font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;}
+/* STEPS */
+.steps-section{background:var(--c-surface);padding:96px 0;}
+.steps-header{text-align:center;margin-bottom:72px;}
+.steps-header p{color:var(--c-muted);font-size:17px;margin-top:12px;}
+.steps-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-bottom:56px;}
+.steps-row::before{content:'';position:absolute;top:36px;left:calc(10% + 18px);right:calc(10% + 18px);height:2px;background:linear-gradient(90deg,var(--c-primary) 0%,var(--c-teal) 50%,var(--c-primary-dark) 100%);z-index:0;}
+.step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 12px;position:relative;z-index:1;}
+.step-circle{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;font-family:var(--font-head);margin-bottom:20px;box-shadow:var(--shadow-md);border:4px solid var(--c-surface);flex-shrink:0;}
+.sc-1{background:var(--c-primary);color:white;}
+.sc-2{background:var(--c-teal);color:white;}
+.sc-3{background:var(--c-primary);color:white;}
+.sc-4{background:var(--c-teal);color:white;}
+.sc-5{background:var(--c-dark);color:white;}
+.step-title{font-family:var(--font-head);font-size:14px;font-weight:700;color:var(--c-dark);margin-bottom:8px;line-height:1.3;}
+.step-desc{font-size:12.5px;color:var(--c-muted);line-height:1.6;}
+.step-note{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--c-teal-dark);background:var(--c-teal-soft);padding:3px 10px;border-radius:var(--r-pill);margin-top:8px;border:1px solid var(--c-teal-frame);}
+.steps-notice{background:var(--c-bg-cream);border:1px solid rgba(190,207,218,0.4);border-radius:var(--r-lg);padding:20px 28px;display:flex;align-items:flex-start;gap:16px;}
+.steps-notice-icon{width:40px;height:40px;border-radius:12px;background:var(--c-teal-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--c-teal);}
+.steps-notice p{font-size:14px;color:var(--c-text);line-height:1.65;}
+/* PRICING */
+.pricing-section{background:var(--c-bg-soft);padding:96px 0;}
+.pricing-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start;}
+.pricing-left h2{margin-bottom:16px;margin-top:10px;}
+.pricing-left p{color:var(--c-muted);line-height:1.75;margin-bottom:28px;}
+.pricing-extra-cards{display:flex;flex-direction:column;gap:14px;margin-top:8px;}
+.pricing-extra{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--r-md);padding:18px 20px;display:flex;align-items:flex-start;gap:14px;}
+.pricing-extra-icon{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--c-teal-frame);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--c-teal);}
+.pricing-extra h4{font-size:14px;margin-bottom:4px;}
+.pricing-extra p{font-size:13px;color:var(--c-muted);line-height:1.5;}
+.pricing-card{background:var(--c-dark);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lg);position:relative;}
+.pricing-card-glow{position:absolute;width:300px;height:300px;border-radius:50%;top:-100px;right:-60px;background:var(--c-teal);opacity:0.07;}
+.pricing-card-top{padding:40px 40px 32px;border-bottom:1px solid rgba(255,255,255,0.08);position:relative;z-index:1;}
+.pricing-card-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--c-teal);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.pricing-card-label svg{opacity:0.8;}
+.pricing-price-area{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;}
+.pricing-price-placeholder{font-family:var(--font-sketch);font-size:64px;font-weight:700;color:white;line-height:1;letter-spacing:-2px;}
+.pricing-price-note{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.5;}
+.pricing-contact-hint{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r-md);padding:12px 16px;margin-top:16px;font-size:13px;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:10px;}
+.pricing-contact-hint svg{color:var(--c-teal);flex-shrink:0;}
+.pricing-contact-hint a{color:var(--c-primary);font-weight:600;}
+.pricing-card-includes{padding:32px 40px;position:relative;z-index:1;}
+.pricing-includes-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:20px;}
+.pricing-includes-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+.pricing-include-item{display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,0.55);}
+.include-check{width:22px;height:22px;border-radius:50%;background:var(--c-teal);color:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pricing-card-divider{height:1px;background:rgba(255,255,255,0.07);margin-bottom:24px;}
+.pricing-extras-row{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;}
+.pricing-extra-note{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(255,255,255,0.35);}
+.pen-icon{width:18px;height:18px;flex-shrink:0;margin-top:2px;color:var(--c-teal);opacity:0.6;}
+/* FUNDING */
+.funding-section{background:var(--c-dark);padding:80px 0;}
+.funding-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.funding-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--c-teal);margin-bottom:14px;display:block;}
+.funding-left h2{color:white;margin-bottom:16px;}
+.funding-left p{color:rgba(255,255,255,0.45);font-size:15px;line-height:1.75;}
+.funding-right{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:var(--r-lg);padding:36px;}
+.funding-items{display:flex;flex-direction:column;gap:20px;}
+.funding-item{display:flex;align-items:flex-start;gap:16px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.funding-item:last-child{border-bottom:none;padding-bottom:0;}
+.funding-item-icon{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--c-teal);}
+.funding-item h4{font-size:14px;color:white;margin-bottom:4px;}
+.funding-item p{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.55;}
+/* ENROLLMENT */
+.enrollment-section{background:var(--c-surface);padding:96px 0;position:relative;overflow:hidden;}
+.enroll-blob-1{position:absolute;width:420px;height:420px;background:rgba(240,120,56,0.07);border-radius:55% 45% 42% 58% / 48% 52% 55% 45%;top:-160px;left:-80px;pointer-events:none;}
+.enroll-blob-2{position:absolute;width:280px;height:280px;background:rgba(106,170,184,0.08);border-radius:42% 58% 55% 45% / 55% 45% 48% 52%;bottom:-100px;right:-40px;pointer-events:none;}
+.enroll-dashed{position:absolute;width:300px;height:300px;border:1.5px dashed var(--c-teal-frame);border-radius:45% 55% 52% 48% / 52% 48% 55% 45%;bottom:-120px;right:60px;opacity:0.4;pointer-events:none;}
+.enrollment-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.enrollment-left h2{margin-bottom:16px;margin-top:10px;}
+.enrollment-left p{color:var(--c-muted);line-height:1.75;margin-bottom:24px;font-size:15px;}
+.enrollment-steps{display:flex;flex-direction:column;gap:0;margin-bottom:32px;}
+.enroll-mini-step{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--c-border);}
+.enroll-mini-step:last-child{border-bottom:none;}
+.ems-num{width:28px;height:28px;border-radius:50%;background:var(--c-primary);color:white;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.ems-text{font-size:13.5px;color:var(--c-text);line-height:1.55;}
+.ems-text strong{color:var(--c-dark);display:block;font-size:14px;margin-bottom:2px;}
+.enrollment-cta-box{background:var(--c-primary-soft);border:2px solid var(--c-primary);border-radius:var(--r-lg);padding:40px;text-align:center;}
+.ecb-icon-wrap{width:64px;height:64px;border-radius:50%;border:2px solid var(--c-teal-frame);background:var(--c-surface);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--c-primary);}
+.ecb-title{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--c-dark);margin-bottom:10px;}
+.ecb-desc{font-size:14px;color:var(--c-muted);line-height:1.6;margin-bottom:24px;}
+.ecb-url{font-size:12px;color:var(--c-muted);margin-top:14px;display:flex;align-items:center;justify-content:center;gap:6px;}
+.ecb-url code{background:var(--c-border);padding:3px 8px;border-radius:4px;font-size:11px;color:var(--c-text);}
+.ecb-note{margin-top:16px;padding:12px 16px;background:var(--c-teal-soft);border:1px solid var(--c-teal-frame);border-radius:var(--r-md);font-size:13px;color:var(--c-teal-dark);font-weight:600;display:flex;align-items:center;gap:8px;justify-content:center;}
+/* CONTACT */
+.contact-section{background:var(--c-bg-soft);padding:80px 0;}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;}
+.contact-card{background:var(--c-surface);border-radius:var(--r-lg);padding:36px 28px;text-align:center;border:1px solid var(--c-border);box-shadow:var(--shadow-sm);transition:transform 0.2s,box-shadow 0.2s;}
+.contact-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+.contact-card-icon{width:72px;height:72px;border-radius:50%;border:2px solid var(--c-teal-frame);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--c-teal);}
+.contact-card h3{font-size:18px;margin-bottom:8px;}
+.contact-card p{font-size:13.5px;color:var(--c-muted);line-height:1.6;margin-bottom:20px;}
+.contact-card-value{font-family:var(--font-head);font-size:20px;font-weight:800;color:var(--c-primary);margin-bottom:16px;}
+/* FOOTER */
+.footer{background:var(--c-dark);padding:80px 0 0;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;padding-bottom:64px;}
+.footer-brand p{color:rgba(255,255,255,0.4);font-size:13.5px;line-height:1.7;margin-bottom:20px;margin-top:14px;}
+.footer-fb-link{display:inline-flex;align-items:center;gap:8px;color:var(--c-teal);font-size:13px;font-weight:600;background:rgba(106,170,184,0.12);padding:8px 14px;border-radius:var(--r-sm);}
+.footer-col-title{font-family:var(--font-head);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,0.3);margin-bottom:18px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-links a{color:rgba(255,255,255,0.45);font-size:13.5px;transition:color 0.15s;}
+.footer-links a:hover{color:var(--c-primary);}
+.footer-contact-item{display:flex;align-items:flex-start;gap:8px;color:rgba(255,255,255,0.45);font-size:13.5px;margin-bottom:10px;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding:22px 0;}
+.footer-bottom p{color:rgba(255,255,255,0.25);font-size:12px;}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.2s;}.reveal-delay-3{transition-delay:0.3s;}
+
+/* ─── RESPONSIVE (mobile-first) ─── */
+.nav-burger{display:none;background:none;border:none;cursor:pointer;padding:8px;border-radius:8px;color:var(--c-dark);}
+.nav-burger:hover{background:var(--c-bg-soft);}
+.mobile-nav{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,43,53,0.55);backdrop-filter:blur(4px);}
+.mobile-nav.open{display:flex;align-items:flex-start;justify-content:flex-end;}
+.mobile-nav-panel{background:var(--c-surface);width:280px;height:100%;overflow-y:auto;padding:28px 24px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:0;}
+.mobile-nav-close{align-self:flex-end;background:none;border:none;cursor:pointer;padding:6px;color:var(--c-muted);margin-bottom:16px;}
+.mobile-nav-logo{font-family:var(--font-head);font-size:18px;font-weight:900;color:var(--c-teal);margin-bottom:28px;}
+.mobile-nav-logo .accent{color:var(--c-primary);}
+.mobile-nav-links{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:28px;}
+.mobile-nav-links a{display:block;padding:11px 14px;font-size:15px;font-weight:600;color:var(--c-text);border-radius:var(--r-sm);transition:all 0.15s;}
+.mobile-nav-links a:hover,.mobile-nav-links a.active{color:var(--c-primary);background:var(--c-primary-soft);}
+.mobile-nav-cta{display:flex;flex-direction:column;gap:10px;}
+@media(max-width:900px){
+  .topbar{display:none!important;}
+  .footer-grid{grid-template-columns:1fr 1fr!important;gap:32px!important;}
+}
+@media(max-width:768px){
+  .nav-links,.nav-actions{display:none!important;}
+  .nav-burger{display:flex!important;}
+  .container{padding:0 18px!important;}
+  h1{font-size:clamp(26px,7vw,48px)!important;}
+  h2{font-size:clamp(22px,6vw,36px)!important;}
+}
+@media(max-width:540px){
+  .footer-grid{grid-template-columns:1fr!important;}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:center;}
+}
+@media(max-width:900px){
+  .page-hero .container{grid-template-columns:1fr!important;}
+  .hero-contact-card{display:none;}
+  .steps-row{grid-template-columns:1fr 1fr!important;}
+  .steps-row::before{display:none!important;}
+  .pricing-inner{grid-template-columns:1fr!important;gap:40px;}
+  .funding-inner{grid-template-columns:1fr!important;gap:40px;}
+  .enrollment-inner{grid-template-columns:1fr!important;gap:40px;}
+  .contact-inner{grid-template-columns:1fr 1fr!important;}
+}
+@media(max-width:540px){
+  .steps-row{grid-template-columns:1fr!important;}
+  .contact-inner{grid-template-columns:1fr!important;}
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="animations.js" defer></script>
+</head>
+<body>
+<!-- TOPBAR -->
+<div class="topbar"><div class="container">
+  <div class="topbar-left">
+    <a href="tel:725119962"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>725 119 962</a>
+    <a href="mailto:sobierajskidomek@wp.pl"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>sobierajskidomek@wp.pl</a>
+    <a href="#"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Podolany &amp; Grunwald, Poznań</a>
+  </div>
+  <div class="topbar-right"><a href="https://www.facebook.com/Sobierajskidomek1/" target="_blank"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div>
+</div></div>
+<!-- NAVBAR -->
+<nav class="navbar"><div class="container">
+  <a href="index.html" class="nav-logo"><div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#6AAAB8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>sobie…<span class="accent">Rajski</span>&nbsp;Domek</a>
+  <ul class="nav-links">
+    <li><a href="o-nas.html">O nas</a></li><li><a href="oferta.html">Oferta</a></li>
+    <li><a href="rekrutacja.html" class="active">Rekrutacja</a></li>
+    <li><a href="dofinansowanie.html">Dofinansowanie</a></li>
+    <li><a href="galeria.html">Galeria</a></li>
+      <li><a href="aktualnosci.html">Aktualności</a></li><li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <div class="nav-actions"><a href="faq.html" class="btn btn-ghost btn-sm">FAQ</a><a href="rekrutacja.html" class="btn btn-primary btn-sm">Zapisz dziecko &rarr;</a></div>
+  <button class="nav-burger" onclick="openMobileNav()" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</div></nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav" onclick="if(event.target===this)closeMobileNav()">
+  <div class="mobile-nav-panel">
+    <button class="mobile-nav-close" onclick="closeMobileNav()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="mobile-nav-logo">sobie&#8230;<span class="accent">Rajski</span>&nbsp;Domek</div>
+    <ul class="mobile-nav-links">
+      <li><a href="o-nas.html">O nas</a></li>
+      <li><a href="oferta.html">Oferta</a></li>
+      <li><a href="rekrutacja.html">Rekrutacja</a></li>
+      <li><a href="dofinansowanie.html">Dofinansowanie</a></li>
+      <li><a href="galeria.html">Galeria</a></li>
+      <li><a href="aktualnosci.html">Aktualności</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <div class="mobile-nav-cta">
+      <a href="rekrutacja.html" class="btn btn-primary" style="text-align:center;">Zapisz dziecko &rarr;</a>
+      <a href="kontakt.html" class="btn btn-outline" style="text-align:center;">Kontakt</a>
+    </div>
+  </div>
+</div>
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="phd phd-1"></div><div class="phd phd-2"></div><div class="phd phd-3"></div><div class="phd phd-ring"></div>
+  <div class="container">
+    <div>
+      <div class="breadcrumb"><a href="index.html">Strona główna</a><span>›</span><span style="color:white;">Rekrutacja &amp; Cennik</span></div>
+      <h1>Rekrutacja<br>&amp; Cennik.</h1>
+      <p>Zapisanie dziecka jest prostsze niż myślisz. Nabór trwa cały rok — sprawdź jak to zrobić.</p>
+      <div class="hero-open-badge"><div class="open-dot"></div><span>Nabór otwarty — wolne miejsca dostępne</span></div>
+    </div>
+    <div class="hero-contact-card">
+      <div class="hero-contact-label">Masz pytania? Zadzwoń</div>
+      <div class="hero-phone">725 119 962</div>
+      <div class="hero-email">sobierajskidomek@wp.pl</div>
+      <a href="tel:725119962" class="btn btn-white" style="width:100%;justify-content:center;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Zadzwoń teraz
+      </a>
+    </div>
+  </div>
+</div>
+<!-- STEPS -->
+<section class="steps-section"><div class="container">
+  <div class="steps-header reveal">
+    <span class="eyebrow">Jak zapisać dziecko</span>
+    <h2>Zapis w 5 prostych krokach.</h2>
+    <p>Cały proces zajmuje kilka minut. Oto co musisz zrobić.</p>
+  </div>
+  <div class="steps-row reveal">
+    <div class="step"><div class="step-circle sc-1">1</div><div class="step-title">Wypełnij formularz Nabór</div><div class="step-desc">Wejdź na nabor.pcss.pl i wypełnij elektroniczny formularz zgłoszenia Miasta Poznania.</div><div class="step-note">Bez pieczątek pracodawców</div></div>
+    <div class="step"><div class="step-circle sc-2">2</div><div class="step-title">Wyślij PDF do nas</div><div class="step-desc">Wygeneruj formularz w formacie PDF i wyślij na sobierajskidomek@wp.pl.</div><div class="step-note">sobierajskidomek@wp.pl</div></div>
+    <div class="step"><div class="step-circle sc-3">3</div><div class="step-title">Czekaj na kontakt</div><div class="step-desc">Skontaktujemy się z Tobą, potwierdzimy miejsce i umówimy na spotkanie lub podpisanie umowy.</div><div class="step-note">Oddzwaniamy w 24h</div></div>
+    <div class="step"><div class="step-circle sc-4">4</div><div class="step-title">Podpisz umowę</div><div class="step-desc">Podpisz umowę o opiekę i wpłać jednorazowe wpisowe — najpóźniej w dniu podpisania umowy.</div><div class="step-note">Wpisowe jednorazowe</div></div>
+    <div class="step"><div class="step-circle sc-5">5</div><div class="step-title">Witamy w Domku!</div><div class="step-desc">Ustalamy datę pierwszego dnia i okres adaptacji. Twoje dziecko dołącza do naszej rodziny.</div><div class="step-note">Adaptacja gratis</div></div>
+  </div>
+  <div class="steps-notice reveal">
+    <div class="steps-notice-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+    <p><strong>Ważne:</strong> Dziecko po przyjęciu do naszego żłobka zostaje automatycznie skreślone z listy oczekujących w innych placówkach. Przy każdorazowej edycji formularza online generuje się <strong>nowy kod PIN</strong> — zachowaj go.</p>
+  </div>
+</div></section>
+<!-- PRICING -->
+<section class="pricing-section"><div class="container">
+  <div class="pricing-inner">
+    <div class="pricing-left reveal">
+      <span class="eyebrow">Cennik</span>
+      <h2>Przejrzysty cennik bez ukrytych kosztów.</h2>
+      <p>Miesięczna opłata obejmuje absolutnie wszystko — od wyżywienia po pieluchy. Żadnych dodatkowych faktur za zajęcia czy materiały.</p>
+      <div class="pricing-extra-cards">
+        <div class="pricing-extra">
+          <div class="pricing-extra-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div><h4>Wpisowe jednorazowe</h4><p>Opłata wpisowa jest jednorazowa, płatna najpóźniej w dniu podpisania umowy. Skontaktuj się z nami, aby poznać aktualną wysokość.</p></div>
+        </div>
+        <div class="pricing-extra">
+          <div class="pricing-extra-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><h4>Opłata za późny odbiór</h4><p>W przypadku nieodebrania dziecka po godzinach pracy (po 17:30) pobierana jest opłata dodatkowa w wysokości <strong>80 zł za każdą rozpoczętą godzinę.</strong></p></div>
+        </div>
+        <div class="pricing-extra">
+          <div class="pricing-extra-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><h4>Przerwa urlopowa</h4><p>W okresie przerwy urlopowej zapewniamy opiekę w żłobku dyżurnym — bez dodatkowych opłat dla rodzica.</p></div>
+        </div>
+        <div class="pricing-extra">
+          <div class="pricing-extra-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div><h4>Rezygnacja z miejsca</h4><p>O rezygnacji należy poinformować z minimum miesięcznym wyprzedzeniem. Naliczanie opłat kończy się z końcem następnego miesiąca.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-card reveal reveal-delay-2">
+      <div class="pricing-card-glow"></div>
+      <div class="pricing-card-top">
+        <div class="pricing-card-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Miesięczna opłata za pobyt</div>
+        <div class="pricing-price-area"><div class="pricing-price-placeholder">— zł</div></div>
+        <div class="pricing-price-note" style="color:rgba(255,255,255,0.3);">miesięcznie / per dziecko</div>
+        <div class="pricing-contact-hint">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Zadzwoń po aktualny cennik: <a href="tel:725119962">725 119 962</a></span>
+        </div>
+      </div>
+      <div class="pricing-card-includes">
+        <div class="pricing-includes-title">W cenie miesięcznej otrzymujesz</div>
+        <ul class="pricing-includes-list">
+          <li class="pricing-include-item"><div class="include-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span><strong style="color:white;">Całodzienny pobyt</strong> — do 10h, Pon–Pt, cały rok</span></li>
+          <li class="pricing-include-item"><div class="include-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span><strong style="color:white;">Pełne wyżywienie</strong> — śniadanie, obiad, podwieczorek</span></li>
+          <li class="pricing-include-item"><div class="include-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span><strong style="color:white;">Wszystkie zajęcia</strong> — muzyka, angielski, logopedia i inne</span></li>
+          <li class="pricing-include-item"><div class="include-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span><strong style="color:white;">Materiały plastyczne</strong> — farby, kredki, papier</span></li>
+          <li class="pricing-include-item"><div class="include-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span><strong style="color:white;">Ubezpieczenie NNW</strong> — pełna ochrona dziecka</span></li>
+          <li class="pricing-include-item"><div class="include-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span><strong style="color:white;">Pieluchy i środki higieny</strong> — nic nie musisz przynosić</span></li>
+          <li class="pricing-include-item"><div class="include-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span><strong style="color:white;">Monitoring online</strong> — podgląd na żywo dla rodziców</span></li>
+        </ul>
+        <div class="pricing-card-divider"></div>
+        <div class="pricing-extras-row">
+          <div class="pricing-extra-note"><svg class="pen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Wpisowe jednorazowe — płatne przy podpisaniu umowy</span></div>
+          <div class="pricing-extra-note"><svg class="pen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Spóźniony odbiór po 17:30 — 80 zł/h dodatkowe</span></div>
+        </div>
+        <a href="tel:725119962" class="btn btn-primary" style="width:100%;justify-content:center;font-size:15px;padding:16px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Zapytaj o aktualny cennik
+        </a>
+      </div>
+    </div>
+  </div>
+</div></section>
+<!-- FUNDING -->
+<section class="funding-section"><div class="container">
+  <div class="funding-inner">
+    <div class="funding-left reveal">
+      <span class="funding-label">Dofinansowanie</span>
+      <h2>Obniż koszt opieki o dofinansowanie.</h2>
+      <p>Nasza placówka objęta jest programami miejskimi i rządowymi, które realnie obniżają miesięczną opłatę. Pomożemy Ci przejść przez cały proces.</p>
+      <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="dofinansowanie.html" class="btn btn-primary">Dowiedz się więcej &rarr;</a>
+        <a href="tel:725119962" class="btn" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.1);">Zapytaj telefonicznie</a>
+      </div>
+    </div>
+    <div class="funding-right reveal reveal-delay-2">
+      <div class="funding-items">
+        <div class="funding-item">
+          <div class="funding-item-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div><h4>Dofinansowanie z Urzędu Miasta Poznania</h4><p>Program "Aktywnie w Żłobku" — realizacja zadań Miasta na rzecz rodziny i macierzyństwa.</p></div>
+        </div>
+        <div class="funding-item">
+          <div class="funding-item-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <div><h4>Programy rządowe</h4><p>Aktualne programy wsparcia rodziny finansowane przez budżet centralny. Regularnie aktualizujemy informacje.</p></div>
+        </div>
+        <div class="funding-item">
+          <div class="funding-item-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><h4>Pomożemy Ci to załatwić</h4><p>Mamy doświadczenie z setkami rodziców — zadzwoń, a poprowadzimy Cię krok po kroku przez cały proces.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+<!-- ENROLLMENT -->
+<section class="enrollment-section">
+  <div class="enroll-blob-1"></div>
+  <div class="enroll-blob-2"></div>
+  <div class="enroll-dashed"></div>
+  <div class="container">
+  <div class="enrollment-inner">
+    <div class="enrollment-left reveal">
+      <span class="eyebrow">Formularz zapisu</span>
+      <h2>Zacznij od formularza online.</h2>
+      <p>Rekrutacja do żłobków w Poznaniu odbywa się przez jeden wspólny system elektroniczny Miasta Poznania.</p>
+      <div class="enrollment-steps">
+        <div class="enroll-mini-step"><div class="ems-num">1</div><div class="ems-text"><strong>Wejdź na nabor.pcss.pl</strong>Wypełnij formularz zgłoszenia online — zajmuje ok. 10 minut.</div></div>
+        <div class="enroll-mini-step"><div class="ems-num">2</div><div class="ems-text"><strong>Wygeneruj PDF i zachowaj PIN</strong>Przy każdej edycji formularza generuje się nowy kod PIN — zachowaj go.</div></div>
+        <div class="enroll-mini-step"><div class="ems-num">3</div><div class="ems-text"><strong>Wyślij PDF na nasz e-mail</strong>Prześlij wygenerowany dokument na sobierajskidomek@wp.pl.</div></div>
+      </div>
+      <a href="mailto:sobierajskidomek@wp.pl" class="btn btn-outline">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Wyślij PDF na e-mail &rarr;
+      </a>
+    </div>
+    <div class="enrollment-cta-box reveal reveal-delay-2">
+      <div class="ecb-icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+      <div class="ecb-title">Wypełnij formularz Nabór</div>
+      <div class="ecb-desc">Oficjalny elektroniczny system naboru Miasta Poznania. Wypełnij wniosek, wygeneruj PDF i wyślij do nas.</div>
+      <a href="https://nabor.pcss.pl/poznan/zlobek/" target="_blank" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">Przejdź do formularza &rarr;</a>
+      <div class="ecb-url"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><code>nabor.pcss.pl/poznan/zlobek</code></div>
+      <div class="ecb-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Nie wymagamy pieczątek pracodawców!</div>
+    </div>
+  </div>
+</div></section>
+<!-- CONTACT -->
+<section class="contact-section"><div class="container">
+  <div style="text-align:center;margin-bottom:48px;" class="reveal">
+    <span class="eyebrow">Skontaktuj się</span>
+    <h2>Masz pytania?<br>Odpowiemy na wszystko.</h2>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-card reveal reveal-delay-1">
+      <div class="contact-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <h3>Zadzwoń do nas</h3>
+      <p>Odpowiadamy w godzinach pracy żłobka. Chętnie odpowiemy na każde pytanie przed zapisem.</p>
+      <div class="contact-card-value">725 119 962</div>
+      <a href="tel:725119962" class="btn btn-primary" style="width:100%;justify-content:center;">Zadzwoń teraz</a>
+      <p style="font-size:12px;color:var(--c-muted);margin-top:12px;">Pon – Pt · 7:00 – 17:30</p>
+    </div>
+    <div class="contact-card reveal reveal-delay-2">
+      <div class="contact-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <h3>Napisz e-mail</h3>
+      <p>Odpowiadamy na wiadomości w ciągu 24 godzin roboczych. Możesz też przesłać wypełniony formularz PDF.</p>
+      <div class="contact-card-value" style="font-size:14px;">sobierajskidomek@wp.pl</div>
+      <a href="mailto:sobierajskidomek@wp.pl" class="btn btn-outline" style="width:100%;justify-content:center;">Napisz wiadomość</a>
+      <p style="font-size:12px;color:var(--c-muted);margin-top:12px;">Odpowiedź w ciągu 24h</p>
+    </div>
+    <div class="contact-card reveal reveal-delay-3">
+      <div class="contact-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <h3>Odwiedź nas</h3>
+      <p>Zapraszamy na wizytę — pokażemy Ci żłobek, odpowiemy na pytania i możemy umówić się na adaptację.</p>
+      <div style="font-size:13px;color:var(--c-muted);line-height:1.8;margin-bottom:20px;text-align:left;">
+        <strong style="color:var(--c-text);">Żłobek 1:</strong><br>ul. Drwęskiego 13, Poznań<br><br>
+        <strong style="color:var(--c-text);">Żłobek 2:</strong><br>ul. Wiosenna 6, Poznań
+      </div>
+      <a href="kontakt.html" class="btn btn-dark" style="width:100%;justify-content:center;">Sprawdź lokalizacje</a>
+    </div>
+  </div>
+</div></section>
+<!-- FOOTER -->
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="color:white;"><div class="logo-mark" style="background:rgba(106,170,184,0.15);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6AAAB8" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>sobie…<span class="accent">Rajski</span>&nbsp;Domek</div>
+      <p>Ciepłe miejsce dla Twojego maluszka w sercu Poznania. Żłobek prywatny od 2009 roku.</p>
+      <a href="https://www.facebook.com/Sobierajskidomek1/" class="footer-fb-link" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Codzienne relacje na Facebooku</a>
+    </div>
+    <div><div class="footer-col-title">Nawigacja</div><ul class="footer-links"><li><a href="o-nas.html">O nas</a></li><li><a href="oferta.html">Oferta &amp; Program</a></li><li><a href="rekrutacja.html">Rekrutacja &amp; Cennik</a></li><li><a href="dofinansowanie.html">Dofinansowanie</a></li><li><a href="galeria.html">Galeria</a></li>
+      <li><a href="aktualnosci.html">Aktualności</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div><div class="footer-col-title">Kontakt</div>
+      <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:2px;color:var(--c-teal);"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:725119962" style="color:var(--c-primary);font-weight:600;">725 119 962</a></div>
+      <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:2px;color:var(--c-teal);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:sobierajskidomek@wp.pl">sobierajskidomek@wp.pl</a></div>
+      <div style="margin-top:16px;color:rgba(255,255,255,0.3);font-size:13px;line-height:1.8;"><strong style="color:rgba(255,255,255,0.5);">Żłobek 1</strong><br>ul. Drwęskiego 13<br><br><strong style="color:rgba(255,255,255,0.5);">Żłobek 2</strong><br>ul. Wiosenna 6</div>
+    </div>
+    <div><div class="footer-col-title">Informacje</div><ul class="footer-links"><li><a href="#">Regulamin</a></li><li><a href="#">Polityka prywatności</a></li><li><a href="#">Cookies</a></li><li><a href="#">Praca — wyślij CV</a></li><li><a href="#">Strefa Rodzica</a></li></ul></div>
+  </div>
+</div>
+<div class="footer-bottom"><div class="container"><p>&copy; 2009–2026 sobie…Rajski Domek &middot; Żłobek prywatny Poznań &middot; Podolany, Grunwald, Ogrody</p></div></div>
+</footer>
+<script>
+con

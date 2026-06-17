@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BubaKids Design System — Sobierajski Domek Redesign</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   BUBAKIDS-INSPIRED DESIGN SYSTEM — v2 (corrected)
+   For: Sobierajski Domek Website Redesign
+   Based on: Booba Kids / BubaKids kindergarten reference photo
+   ============================================================
+
+   KEY CORRECTIONS FROM v1:
+   - Headings: Nunito ExtraBold 800/900 (NOT Playfair Display)
+   - Stat numbers: Caveat (handwritten/sketch Google Font)
+   - Teal: #6AAAB8 (pastel, light) — NOT dark #3B7A8C
+   - Orange: #F07838 (warmer) — was #E8845A
+   - Topbar: #D8E8EF (powder blue) — NOT dark
+   - Blob/frame: light steel-blue shape
+   ============================================================ */
+
+:root {
+  /* ─── COLOR TOKENS ──────────────────────────────────────── */
+
+  /* Backgrounds */
+  --c-bg:           #FFFFFF;          /* Page — pure white */
+  --c-bg-soft:      #F8F6F3;          /* Subtle warm off-white */
+  --c-bg-cream:     #F2E5CC;          /* Warm cream — stats bar bg */
+  --c-bg-topbar:    #D8E8EF;          /* Powder blue topbar */
+
+  /* Primary — Orange */
+  --c-orange:       #F07838;          /* Brand orange — CTAs, highlights, eyebrows */
+  --c-orange-dark:  #D45E20;          /* Hover / pressed */
+  --c-orange-soft:  #FEF0E6;          /* Tint backgrounds */
+  --c-orange-text:  #D45E20;          /* Orange text on white */
+
+  /* Accent — Steel Blue / Pastel Teal */
+  --c-teal:         #6AAAB8;          /* Pastel steel-blue — stat numbers, icons */
+  --c-teal-dark:    #4A8A98;          /* Darker teal for text on light bg */
+  --c-teal-soft:    #E0EFF3;          /* Very light teal tint */
+  --c-teal-frame:   #BECFDA;          /* Photo blob frame / dashed lines */
+
+  /* Neutrals */
+  --c-dark:         #1A2B35;          /* Hero headings — dark navy */
+  --c-text:         #3A4A54;          /* Body text */
+  --c-muted:        #7A8E98;          /* Captions, placeholders, secondary */
+  --c-border:       #E2DDD6;          /* Dividers, card borders */
+  --c-border-light: #EDE9E4;          /* Very subtle */
+
+  /* Surface */
+  --c-surface:      #FFFFFF;
+
+  /* ─── TYPOGRAPHY ────────────────────────────────────────── */
+  /*
+     Nunito — ALL headings (ExtraBold 800/900 for display, 700 for section heads)
+              Rounded sans-serif — matches BubaKids' soft, rounded letterforms
+     Caveat — ONLY for large decorative stat numbers (handwritten/sketch style)
+     Inter  — Body copy, nav links, captions, buttons
+  */
+  --font-head:    'Nunito', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-sketch:  'Caveat', cursive;
+
+  /* Type scale */
+  --text-hero:    clamp(44px, 5vw, 64px);
+  --text-h2:      clamp(30px, 3.5vw, 44px);
+  --text-h3:      24px;
+  --text-h4:      18px;
+  --text-body:    16px;
+  --text-sm:      14px;
+  --text-xs:      12px;
+  --text-stat:    clamp(56px, 7vw, 88px);   /* Caveat font stat numbers */
+
+  /* ─── SPACING ───────────────────────────────────────────── */
+  --space-xs:   8px;
+  --space-sm:   16px;
+  --space-md:   24px;
+  --space-lg:   40px;
+  --space-xl:   64px;
+  --space-2xl:  96px;
+  --space-3xl:  128px;
+
+  /* ─── BORDER RADIUS ─────────────────────────────────────── */
+  --r-xs:   6px;
+  --r-sm:   12px;
+  --r-md:   20px;
+  --r-lg:   32px;
+  --r-xl:   48px;
+  --r-2xl:  64px;
+  --r-pill: 999px;
+
+  /* Organic blob presets (border-radius shorthand) */
+  --blob-hero:  60% 40% 55% 45% / 50% 58% 42% 50%;
+  --blob-about: 42% 58% 60% 40% / 58% 42% 56% 44%;
+  --blob-deco:  50% 50% 38% 62% / 44% 56% 44% 56%;
+
+  /* ─── SHADOWS ───────────────────────────────────────────── */
+  --shadow-xs:     0 1px 4px rgba(0,0,0,0.05);
+  --shadow-sm:     0 2px 12px rgba(0,0,0,0.06);
+  --shadow-md:     0 6px 28px rgba(0,0,0,0.08);
+  --shadow-lg:     0 12px 48px rgba(0,0,0,0.11);
+  --shadow-orange: 0 8px 28px rgba(240,120,56,0.30);
+  --shadow-teal:   0 8px 28px rgba(106,170,184,0.25);
+
+  /* ─── LAYOUT ────────────────────────────────────────────── */
+  --max-width: 1180px;
+}
+
+/* ─── RESET ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.7;
+  color: var(--c-text);
+  background: #e8e8e8;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+
+/* ─── DOC SHELL ─────────────────────────────────────────────── */
+.ds-sidebar {
+  position: fixed; left: 0; top: 0; bottom: 0; width: 220px;
+  background: var(--c-dark); padding: 32px 20px;
+  overflow-y: auto; z-index: 100;
+}
+.ds-sidebar h1 { font-family: var(--font-head); font-size: 15px; font-weight: 800; color: white; margin-bottom: 4px; }
+.ds-sidebar .sub { font-size: 11px; color: #5A7080; margin-bottom: 28px; }
+.ds-sidebar nav a {
+  display: block; font-size: 12px; color: #5A7080; padding: 6px 10px;
+  border-radius: 6px; transition: all 0.15s; margin-bottom: 2px;
+}
+.ds-sidebar nav a:hover { color: white; background: rgba(255,255,255,0.08); }
+.ds-sidebar nav .section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: #3A5060; margin: 20px 0 6px 10px;
+}
+.ds-content { margin-left: 220px; padding: 60px 64px; }
+.ds-section { margin-bottom: 80px; }
+.ds-section-title {
+  font-family: var(--font-head); font-size: 28px; font-weight: 800;
+  color: var(--c-dark); margin-bottom: 6px; padding-bottom: 16px;
+  border-bottom: 2px solid var(--c-border);
+}
+.ds-subtitle { color: var(--c-muted); font-size: 14px; margin-bottom: 36px; margin-top: 4px; }
+.ds-grid { display: grid; gap: 20px; }
+.ds-grid-2 { grid-template-columns: 1fr 1fr; }
+.ds-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.ds-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.ds-token-label { font-size: 11px; font-weight: 600; color: var(--c-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.ds-token-value { font-family: monospace; font-size: 12px; color: var(--c-teal-dark); }
+.ds-box {
+  background: white; border: 1px solid var(--c-border-light);
+  border-radius: var(--r-md); padding: 32px;
+}
+
+/* ─── COLOR SWATCHES ────────────────────────────────────────── */
+.swatch {
+  border-radius: var(--r-sm); overflow: hidden;
+  box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.06);
+}
+.swatch-block { height: 90px; }
+.swatch-info { padding: 12px 14px; background: white; }
+.swatch-name { font-weight: 700; font-size: 13px; color: var(--c-dark); margin-bottom: 2px; }
+.swatch-hex { font-family: monospace; font-size: 12px; color: var(--c-muted); }
+.swatch-var { font-family: monospace; font-size: 10px; color: var(--c-teal-dark); margin-top: 4px; }
+
+/* ─── BUTTONS ───────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 32px; border-radius: var(--r-pill);
+  font-family: var(--font-body); font-size: 14px; font-weight: 700;
+  cursor: pointer; border: 2px solid transparent;
+  transition: all 0.2s ease; white-space: nowrap; letter-spacing: 0.3px;
+}
+.btn-primary { background: var(--c-orange); color: white; border-color: var(--c-orange); }
+.btn-primary:hover { background: var(--c-orange-dark); transform: translateY(-2px); box-shadow: var(--shadow-orange); }
+.btn-teal { background: var(--c-teal); color: white; border-color: var(--c-teal); }
+.btn-teal:hover { background: var(--c-teal-dark); transform: translateY(-2px); box-shadow: var(--shadow-teal); }
+.btn-outline { background: transparent; color: var(--c-orange); border-color: var(--c-orange); }
+.btn-outline:hover { background: var(--c-orange-soft); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--c-muted); border-color: var(--c-border); }
+.btn-ghost:hover { border-color: var(--c-orange); color: var(--c-orange); }
+.btn-sm { padding: 10px 22px; font-size: 13px; }
+.btn-lg { padding: 18px 44px; font-size: 16px; }
+.btn-white { background: white; color: var(--c-orange); border-color: white; }
+.btn-white:hover { background: rgba(255,255,255,0.92); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+
+/* ─── TOPBAR ────────────────────────────────────────────────── */
+.topbar-demo {
+  background: var(--c-bg-topbar); height: 46px;
+  display: flex; align-items: center; padding: 0 32px;
+  justify-content: space-between;
+  border-radius: var(--r-sm) var(--r-sm) 0 0;
+}
+.topbar-contact { display: flex; gap: 28px; }
+.topbar-contact span { font-size: 12px; color: var(--c-text); display: flex; align-items: center; gap: 6px; }
+.topbar-icons { display: flex; gap: 6px; }
+.topbar-icons a {
+  width: 30px; height: 30px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--c-muted); font-size: 14px; transition: all 0.15s;
+}
+.topbar-icons a:hover { background: rgba(106,170,184,0.15); color: var(--c-teal-dark); }
+
+/* ─── NAVBAR ────────────────────────────────────────────────── */
+.navbar-demo {
+  background: white; height: 72px;
+  display: flex; align-items: center; padding: 0 32px;
+  justify-content: space-between; gap: 24px;
+  border-radius: 0 0 var(--r-sm) var(--r-sm);
+  border-bottom: 1px solid var(--c-border);
+  box-shadow: var(--shadow-sm);
+}
+.nav-logo {
+  font-family: var(--font-head); font-size: 26px; font-weight: 900;
+  color: var(--c-teal); letter-spacing: -0.5px;
+}
+.nav-logo span { color: var(--c-orange); }
+.nav-links { display: flex; gap: 2px; list-style: none; }
+.nav-links a {
+  font-size: 13px; font-weight: 600; color: var(--c-text);
+  padding: 7px 13px; border-radius: var(--r-xs);
+  transition: all 0.15s; display: flex; align-items: center; gap: 4px;
+}
+.nav-links a:hover { color: var(--c-orange); }
+
+/* ─── HERO PATTERN ──────────────────────────────────────────── */
+.hero-demo {
+  background: white; border-radius: var(--r-lg); border: 1px solid var(--c-border);
+  padding: 64px 56px; display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: center; position: relative; overflow: hidden;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 3px; color: var(--c-orange); margin-bottom: 14px; display: block;
+}
+.hero-h1 {
+  font-family: var(--font-head); font-size: 54px; font-weight: 900;
+  line-height: 1.1; color: var(--c-dark); margin-bottom: 16px; letter-spacing: -1px;
+}
+.hero-h1 .hl { color: var(--c-orange); }
+.hero-body { font-size: 16px; color: var(--c-muted); line-height: 1.7; margin-bottom: 32px; max-width: 400px; }
+.hero-cta { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+/* Blob image frame — light steel-blue organic shape */
+.hero-img-blob {
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.hero-img-blob .blob-frame {
+  width: 100%; aspect-ratio: 1 / 1.05;
+  background: var(--c-teal-frame);
+  border-radius: var(--blob-hero);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+}
+/* Dashed ring decoration around blob */
+.blob-deco-ring {
+  position: absolute; border-radius: 50%;
+  border: 2px dashed var(--c-teal-frame); pointer-events: none;
+}
+.blob-deco-ring-1 { width: 110%; height: 110%; top: -5%; left: -5%; }
+/* Small dot accents */
+.blob-dot { position: absolute; border-radius: 50%; }
+.blob-dot-1 { width: 14px; height: 14px; background: var(--c-orange); top: 12%; right: -6px; }
+.blob-dot-2 { width: 10px; height: 10px; background: var(--c-teal); bottom: 18%; left: -5px; }
+
+/* ─── STATS BAR ─────────────────────────────────────────────── */
+.stats-bar {
+  background: var(--c-bg-cream);
+  border-radius: var(--r-2xl);
+  padding: 56px 64px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  position: relative; overflow: hidden;
+}
+.stats-bar::before {
+  content: '';
+  position: absolute;
+  width: 120px; height: 120px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 50%;
+  top: -40px; right: -20px;
+}
+.stat-item { text-align: center; padding: 0 20px; }
+.stat-item:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.08); }
+.stat-num {
+  font-family: var(--font-sketch); font-size: 88px; font-weight: 700;
+  color: var(--c-teal); line-height: 1; margin-bottom: 6px;
+}
+.stat-label { font-family: var(--font-head); font-weight: 700; font-size: 16px; color: var(--c-dark); margin-bottom: 6px; }
+.stat-body { font-size: 13px; color: var(--c-muted); line-height: 1.6; max-width: 220px; margin: 0 auto; }
+
+/* ─── ABOUT SPLIT ────────────────────────────────────────────── */
+.about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+/* Orange blob behind photo (like in BubaKids about section) */
+.about-photo-wrap { position: relative; }
+.about-orange-blob {
+  position: absolute;
+  width: 75%; aspect-ratio: 1;
+  background: var(--c-orange);
+  border-radius: var(--blob-about);
+  bottom: -10%; left: -8%;
+  z-index: 0;
+}
+.about-photo {
+  position: relative; z-index: 1;
+  aspect-ratio: 3/4;
+  background: linear-gradient(160deg, var(--c-teal-soft) 0%, var(--c-bg-cream) 100%);
+  border-radius: 40px 40px 40px 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 80px;
+}
+/* Dashed outline offset ring */
+.about-photo::after {
+  content: ''; position: absolute; inset: -14px;
+  border: 2px dashed rgba(106,170,184,0.3);
+  border-radius: 46px 46px 46px 18px; pointer-events: none;
+}
+.about-feature { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+.about-feature-icon {
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 2px solid var(--c-teal); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--c-teal); font-size: 22px;
+}
+.about-feature-title { font-family: var(--font-head); font-weight: 700; font-size: 16px; color: var(--c-dark); margin-bottom: 4px; }
+.about-feature-body { font-size: 14px; color: var(--c-muted); line-height: 1.6; }
+
+/* ─── CARDS ─────────────────────────────────────────────────── */
+.card {
+  background: white; border-radius: var(--r-lg); border: 1px solid var(--c-border);
+  padding: 32px; box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.card-icon-wrap {
+  width: 60px; height: 60px; border-radius: 50%;
+  border: 2px solid var(--c-teal); display: flex; align-items: center;
+  justify-content: center; font-size: 26px; margin-bottom: 20px;
+  color: var(--c-teal);
+}
+.card-title { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--c-dark); margin-bottom: 8px; }
+.card-body { font-size: 14px; color: var(--c-muted); line-height: 1.65; }
+
+/* ─── DECORATIVE ELEMENTS ────────────────────────────────────── */
+.deco-eyebrow {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 3px; color: var(--c-orange); display: block; margin-bottom: 10px;
+}
+.deco-dashed-line { stroke: var(--c-teal-frame); stroke-width: 2; stroke-dasharray: 7 5; fill: none; }
+.deco-ring { border-radius: 50%; border: 2px dashed var(--c-teal-frame); }
+
+/* ─── ACCORDION ──────────────────────────────────────────────── */
+.accordion-item {
+  border: 1px solid var(--c-border); border-radius: var(--r-md);
+  background: white; margin-bottom: 8px; overflow: hidden;
+}
+.accordion-q {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 24px; font-family: var(--font-head); font-weight: 700;
+  font-size: 15px; color: var(--c-dark); cursor: pointer;
+}
+.accordion-q .acc-icon {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 2px solid var(--c-orange); display: flex; align-items: center;
+  justify-content: center; color: var(--c-orange); font-size: 18px;
+  flex-shrink: 0; font-weight: 400;
+}
+.accordion-a { padding: 0 24px 20px; font-size: 14px; color: var(--c-muted); line-height: 1.7; }
+
+/* ─── CTA BANNER ─────────────────────────────────────────────── */
+.cta-card {
+  background: var(--c-orange);
+  border-radius: var(--r-2xl); padding: 56px 64px;
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  position: relative; overflow: hidden;
+}
+.cta-card::before {
+  content: ''; position: absolute;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: rgba(255,255,255,0.08); top: -120px; right: -40px; pointer-events: none;
+}
+.cta-card::after {
+  content: ''; position: absolute;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: rgba(255,255,255,0.05); bottom: -70px; left: 38%; pointer-events: none;
+}
+.cta-text h2 {
+  font-family: var(--font-head); font-size: 36px; font-weight: 900;
+  color: white; margin-bottom: 8px; letter-spacing: -0.5px;
+}
+.cta-text p { color: rgba(255,255,255,0.8); font-size: 15px; }
+
+/* ─── TAGS ───────────────────────────────────────────────────── */
+.chip { display: inline-flex; align-items: center; gap: 6px; background: var(--c-bg-soft); border: 1px solid var(--c-border); border-radius: var(--r-pill); padding: 6px 14px; font-size: 12px; font-weight: 600; color: var(--c-text); }
+.chip-orange { background: var(--c-orange-soft); border-color: rgba(240,120,56,0.2); color: var(--c-orange-text); }
+.chip-teal { background: var(--c-teal-soft); border-color: rgba(106,170,184,0.25); color: var(--c-teal-dark); }
+
+/* ─── BLOBS SHOWCASE ─────────────────────────────────────────── */
+.blob-showcase { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.blob-box {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 6px;
+}
+.blob-label { font-size: 11px; font-weight: 700; color: white; text-align: center; }
+.blob-sub { font-size: 10px; color: rgba(255,255,255,0.7); text-align: center; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="ds-sidebar">
+  <h1>BubaKids DS v2</h1>
+  <div class="sub">Sobierajski Domek · corrected</div>
+  <nav>
+    <div class="section-label">Foundations</div>
+    <a href="#colors">Colors</a>
+    <a href="#typography">Typography</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#shadows">Shadows & Radius</a>
+    <div class="section-label">Components</div>
+    <a href="#buttons">Buttons</a>
+    <a href="#navbar">Topbar & Navbar</a>
+    <a href="#forms">Forms</a>
+    <a href="#chips">Tags & Chips</a>
+    <div class="section-label">Patterns</div>
+    <a href="#hero">Hero Section</a>
+    <a href="#stats">Stats Bar</a>
+    <a href="#about">About Split</a>
+    <a href="#cards">Cards</a>
+    <a href="#blobs">Blob Shapes</a>
+    <a href="#decos">Decorative Elements</a>
+    <a href="#accordion">Accordion / FAQ</a>
+    <a href="#cta">CTA Banner</a>
+    <a href="#notes">Change Notes</a>
+  </nav>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="ds-content">
+
+  <!-- HEADER -->
+  <div style="margin-bottom: 60px;">
+    <p style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--c-orange); margin-bottom: 8px;">Design System v2 — Corrected</p>
+    <h1 style="font-family: 'Nunito', sans-serif; font-size: 48px; font-weight: 900; color: var(--c-dark); margin-bottom: 12px; line-height: 1.1; letter-spacing: -1px;">BubaKids-Inspired<br>Design System</h1>
+    <p style="font-size: 16px; color: var(--c-muted); max-width: 540px; line-height: 1.7;">Reference design system for Sobierajski Domek redesign. Corrected fonts (Nunito + Caveat, no serif), corrected pastel teal color, and powder-blue topbar.</p>
+    <div style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
+      <span class="chip chip-orange">Nunito 900 headings</span>
+      <span class="chip chip-teal">Caveat for stats</span>
+      <span class="chip">Pastel teal #6AAAB8</span>
+      <span class="chip">Orange #F07838</span>
+      <span class="chip">Powder blue topbar</span>
+    </div>
+  </div>
+
+  <!-- COLORS -->
+  <div class="ds-section" id="colors">
+    <div class="ds-section-title">Colors</div>
+    <p class="ds-subtitle">White background, warm orange CTAs, pastel steel-blue teal for accents and stats, warm cream for the stats bar section, powder blue for topbar.</p>
+
+    <p class="ds-token-label" style="margin-bottom: 14px;">Backgrounds</p>
+    <div class="ds-grid ds-grid-4" style="margin-bottom: 32px;">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#FFFFFF; border-bottom: 1px solid #eee;"></div>
+        <div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-var">--c-bg</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#F8F6F3;"></div>
+        <div class="swatch-info"><div class="swatch-name">Off-White</div><div class="swatch-hex">#F8F6F3</div><div class="swatch-var">--c-bg-soft</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#F2E5CC;"></div>
+        <div class="swatch-info"><div class="swatch-name">Warm Cream</div><div class="swatch-hex">#F2E5CC</div><div class="swatch-var">--c-bg-cream</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#D8E8EF;"></div>
+        <div class="swatch-info"><div class="swatch-name">Powder Blue</div><div class="swatch-hex">#D8E8EF</div><div class="swatch-var">--c-bg-topbar</div></div>
+      </div>
+    </div>
+
+    <p class="ds-token-label" style="margin-bottom: 14px;">Primary — Orange</p>
+    <div class="ds-grid ds-grid-4" style="margin-bottom: 32px;">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#F07838;"></div>
+        <div class="swatch-info"><div class="swatch-name">Orange</div><div class="swatch-hex">#F07838</div><div class="swatch-var">--c-orange</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#D45E20;"></div>
+        <div class="swatch-info"><div class="swatch-name">Orange Dark</div><div class="swatch-hex">#D45E20</div><div class="swatch-var">--c-orange-dark</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#FEF0E6;"></div>
+        <div class="swatch-info"><div class="swatch-name">Orange Soft</div><div class="swatch-hex">#FEF0E6</div><div class="swatch-var">--c-orange-soft</div></div>
+      </div>
+    </div>
+
+    <p class="ds-token-label" style="margin-bottom: 14px;">Accent — Pastel Steel-Blue Teal</p>
+    <div class="ds-grid ds-grid-4" style="margin-bottom: 32px;">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#6AAAB8;"></div>
+        <div class="swatch-info"><div class="swatch-name">Teal</div><div class="swatch-hex">#6AAAB8</div><div class="swatch-var">--c-teal</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#4A8A98;"></div>
+        <div class="swatch-info"><div class="swatch-name">Teal Dark</div><div class="swatch-hex">#4A8A98</div><div class="swatch-var">--c-teal-dark</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#E0EFF3;"></div>
+        <div class="swatch-info"><div class="swatch-name">Teal Soft</div><div class="swatch-hex">#E0EFF3</div><div class="swatch-var">--c-teal-soft</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#BECFDA;"></div>
+        <div class="swatch-info"><div class="swatch-name">Teal Frame</div><div class="swatch-hex">#BECFDA</div><div class="swatch-var">--c-teal-frame</div></div>
+      </div>
+    </div>
+
+    <p class="ds-token-label" style="margin-bottom: 14px;">Neutrals</p>
+    <div class="ds-grid ds-grid-4">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#1A2B35;"></div>
+        <div class="swatch-info"><div class="swatch-name">Dark Navy</div><div class="swatch-hex">#1A2B35</div><div class="swatch-var">--c-dark</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#3A4A54;"></div>
+        <div class="swatch-info"><div class="swatch-name">Body Text</div><div class="swatch-hex">#3A4A54</div><div class="swatch-var">--c-text</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#7A8E98;"></div>
+        <div class="swatch-info"><div class="swatch-name">Muted</div><div class="swatch-hex">#7A8E98</div><div class="swatch-var">--c-muted</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#E2DDD6;"></div>
+        <div class="swatch-info"><div class="swatch-name">Border</div><div class="swatch-hex">#E2DDD6</div><div class="swatch-var">--c-border</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="ds-section" id="typography">
+    <div class="ds-section-title">Typography</div>
+    <p class="ds-subtitle">Nunito ExtraBold 900 for all headings — rounded, warm, friendly. Caveat for large decorative stat numbers (handwritten/sketch). Inter for body text.</p>
+
+    <div style="display: grid; gap: 16px;">
+
+      <div class="ds-box">
+        <p class="ds-token-label" style="margin-bottom: 4px;">Hero H1 — Nunito 900 · ~54–64px · letter-spacing -1px</p>
+        <div style="font-family: 'Nunito', sans-serif; font-size: 60px; font-weight: 900; color: var(--c-dark); line-height: 1.1; letter-spacing: -1px;">Witaj w naszej <span style="color: var(--c-orange);">rodzinie</span></div>
+        <p style="font-size: 12px; color: var(--c-muted); margin-top: 8px;">Note: orange on brand name only — NOT on the rest of the heading</p>
+      </div>
+
+      <div class="ds-box">
+        <p class="ds-token-label" style="margin-bottom: 4px;">Section H2 — Nunito 800 · ~36–44px</p>
+        <div style="font-family: 'Nunito', sans-serif; font-size: 40px; font-weight: 800; color: var(--c-dark); line-height: 1.15; letter-spacing: -0.5px;">O nas i naszej placówce</div>
+      </div>
+
+      <div class="ds-box">
+        <p class="ds-token-label" style="margin-bottom: 4px;">H3 — Nunito 700 · 24px</p>
+        <div style="font-family: 'Nunito', sans-serif; font-size: 24px; font-weight: 700; color: var(--c-dark);">Bezpieczeństwo i codzienna opieka</div>
+      </div>
+
+      <div class="ds-box">
+        <p class="ds-token-label" style="margin-bottom: 4px;">Stat Number — Caveat 700 · 88px · color: --c-teal</p>
+        <div style="display: flex; gap: 48px; align-items: baseline;">
+          <span style="font-family: 'Caveat', cursive; font-size: 88px; font-weight: 700; color: var(--c-teal); line-height: 1;">769</span>
+          <span style="font-family: 'Caveat', cursive; font-size: 88px; font-weight: 700; color: var(--c-teal); line-height: 1;">32K</span>
+          <span style="font-family: 'Caveat', cursive; font-size: 88px; font-weight: 700; color: var(--c-teal); line-height: 1;">184</span>
+        </div>
+        <p style="font-size: 12px; color: var(--c-muted); margin-top: 8px;">Caveat — Google Fonts handwritten/sketch style. Matches the reference exactly.</p>
+      </div>
+
+      <div class="ds-box">
+        <p class="ds-token-label" style="margin-bottom: 4px;">Eyebrow Label — Inter 700 · 11px · uppercase · 3px tracking · orange</p>
+        <div style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--c-orange);">The Best Kindergarten</div>
+      </div>
+
+      <div class="ds-box">
+        <p class="ds-token-label" style="margin-bottom: 4px;">Body — Inter 400 · 16px · line-height 1.7</p>
+        <div style="font-family: 'Inter', sans-serif; font-size: 16px; color: var(--c-text); line-height: 1.7; max-width: 520px;">Zapewniamy dzieciom profesjonalną opiekę w bezpiecznym, stymulującym środowisku. Nasz wykwalifikowany zespół dba o każdy aspekt rozwoju Twojego dziecka — od edukacji po kreatywną zabawę.</div>
+      </div>
+
+      <div class="ds-box">
+        <p class="ds-token-label" style="margin-bottom: 4px;">Small / Caption — Inter 400 · 14px · --c-muted</p>
+        <div style="font-family: 'Inter', sans-serif; font-size: 14px; color: var(--c-muted);">Godziny otwarcia: pon–pt, 6:30–17:30</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SPACING -->
+  <div class="ds-section" id="spacing">
+    <div class="ds-section-title">Spacing</div>
+    <p class="ds-subtitle">8px base unit. Sections use 96px vertical padding. BubaKids has notably generous whitespace — don't compress.</p>
+    <div class="ds-box">
+      <div style="display: grid; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 14px;"><span style="font-family: monospace; font-size: 12px; color: var(--c-muted); width: 110px;">--space-xs: 8px</span><div style="width: 8px; height: 20px; background: var(--c-orange-soft); border-radius: 3px; border: 1px solid var(--c-border);"></div></div>
+        <div style="display: flex; align-items: center; gap: 14px;"><span style="font-family: monospace; font-size: 12px; color: var(--c-muted); width: 110px;">--space-sm: 16px</span><div style="width: 16px; height: 20px; background: var(--c-orange-soft); border-radius: 3px; border: 1px solid var(--c-border);"></div></div>
+        <div style="display: flex; align-items: center; gap: 14px;"><span style="font-family: monospace; font-size: 12px; color: var(--c-muted); width: 110px;">--space-md: 24px</span><div style="width: 24px; height: 20px; background: var(--c-orange-soft); border-radius: 3px; border: 1px solid var(--c-border);"></div></div>
+        <div style="display: flex; align-items: center; gap: 14px;"><span style="font-family: monospace; font-size: 12px; color: var(--c-muted); width: 110px;">--space-lg: 40px</span><div style="width: 40px; height: 20px; background: var(--c-orange-soft); border-radius: 3px; border: 1px solid var(--c-border);"></div></div>
+        <div style="display: flex; align-items: center; gap: 14px;"><span style="font-family: monospace; font-size: 12px; color: var(--c-muted); width: 110px;">--space-xl: 64px</span><div style="width: 64px; height: 20px; background: var(--c-teal-soft); border-radius: 3px; border: 1px solid var(--c-border);"></div><span style="font-size: 12px; color: var(--c-muted);">component gap</span></div>
+        <div style="display: flex; align-items: center; gap: 14px;"><span style="font-family: monospace; font-size: 12px; color: var(--c-muted); width: 110px;">--space-2xl: 96px</span><div style="width: 96px; height: 20px; background: var(--c-teal-soft); border-radius: 3px; border: 1px solid var(--c-border);"></div><span style="font-size: 12px; color: var(--c-muted);">section padding</span></div>
+        <div style="display: flex; align-items: center; gap: 14px;"><span style="font-family: monospace; font-size: 12px; color: var(--c-muted); width: 110px;">--space-3xl: 128px</span><div style="width: 128px; height: 20px; background: var(--c-teal-soft); border-radius: 3px; border: 1px solid var(--c-border);"></div><span style="font-size: 12px; color: var(--c-muted);">hero padding</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHADOWS & RADIUS -->
+  <div class="ds-section" id="shadows">
+    <div class="ds-section-title">Shadows & Border Radius</div>
+    <p class="ds-subtitle">Very soft shadows. Very large radii — especially the stats bar (64px). Organic blob shapes via CSS border-radius shorthand.</p>
+
+    <div class="ds-grid ds-grid-3" style="margin-bottom: 32px;">
+      <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: var(--shadow-sm); border: 1px solid var(--c-border-light);">
+        <div class="ds-token-label">shadow-sm</div>
+        <div class="ds-token-value">0 2px 12px rgba(0,0,0,.06)</div>
+        <p style="font-size: 12px; color: var(--c-muted); margin-top: 6px;">Cards, navbar</p>
+      </div>
+      <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: var(--shadow-md);">
+        <div class="ds-token-label">shadow-md</div>
+        <div class="ds-token-value">0 6px 28px rgba(0,0,0,.08)</div>
+        <p style="font-size: 12px; color: var(--c-muted); margin-top: 6px;">Card hover</p>
+      </div>
+      <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: var(--shadow-lg);">
+        <div class="ds-token-label">shadow-lg</div>
+        <div class="ds-token-value">0 12px 48px rgba(0,0,0,.11)</div>
+        <p style="font-size: 12px; color: var(--c-muted); margin-top: 6px;">Modals, overlays</p>
+      </div>
+    </div>
+
+    <div class="ds-grid ds-grid-4">
+      <div style="text-align:center;">
+        <div style="background: var(--c-teal-soft); border: 1px solid var(--c-border); border-radius: 6px; height: 56px; margin-bottom: 8px;"></div>
+        <div class="ds-token-label">r-xs · 6px</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background: var(--c-teal-soft); border: 1px solid var(--c-border); border-radius: 12px; height: 56px; margin-bottom: 8px;"></div>
+        <div class="ds-token-label">r-sm · 12px</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background: var(--c-teal-soft); border: 1px solid var(--c-border); border-radius: 20px; height: 56px; margin-bottom: 8px;"></div>
+        <div class="ds-token-label">r-md · 20px</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background: var(--c-teal-soft); border: 1px solid var(--c-border); border-radius: 32px; height: 56px; margin-bottom: 8px;"></div>
+        <div class="ds-token-label">r-lg · 32px</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background: var(--c-orange-soft); border: 1px solid var(--c-border); border-radius: 48px; height: 56px; margin-bottom: 8px;"></div>
+        <div class="ds-token-label">r-xl · 48px</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background: var(--c-orange-soft); border: 1px solid var(--c-border); border-radius: 64px; height: 56px; margin-bottom: 8px;"></div>
+        <div class="ds-token-label">r-2xl · 64px — Stats bar</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background: var(--c-orange-soft); border: 1px solid var(--c-border); border-radius: 999px; height: 56px; margin-bottom: 8px;"></div>
+        <div class="ds-token-label">r-pill · 999px — Buttons</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background: var(--c-bg-cream); border: 2px solid var(--c-teal-frame); border-radius: 60% 40% 55% 45% / 50% 58% 42% 50%; height: 56px; margin-bottom: 8px;"></div>
+        <div class="ds-token-label">blob-hero — photo frame</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="ds-section" id="buttons">
+    <div class="ds-section-title">Buttons</div>
+    <p class="ds-subtitle">Pill shape, bold, slightly larger than typical. Orange primary for all main CTAs. No dark/navy button variant — BubaKids keeps it clean with orange and outlined styles.</p>
+
+    <div class="ds-box" style="margin-bottom: 20px;">
+      <p class="ds-token-label" style="margin-bottom: 16px;">Variants</p>
+      <div class="btn-row">
+        <button class="btn btn-primary">START TODAY</button>
+        <button class="btn btn-teal">Kontakt</button>
+        <button class="btn btn-outline">Dowiedz się więcej</button>
+        <button class="btn btn-ghost">Anuluj</button>
+      </div>
+    </div>
+    <div class="ds-box" style="margin-bottom: 20px;">
+      <p class="ds-token-label" style="margin-bottom: 16px;">Sizes</p>
+      <div class="btn-row" style="align-items: center;">
+        <button class="btn btn-primary btn-sm">Zapisz dziecko</button>
+        <button class="btn btn-primary">UMOW WIZYTE</button>
+        <button class="btn btn-primary btn-lg">BOOK A VISIT &rarr;</button>
+      </div>
+    </div>
+    <div style="background: var(--c-dark); border-radius: var(--r-lg); padding: 32px;">
+      <p class="ds-token-label" style="margin-bottom: 16px; color: rgba(255,255,255,0.3);">On Dark / Orange Background</p>
+      <div class="btn-row">
+        <button class="btn btn-white">UMOW SIE &rarr;</button>
+        <button class="btn" style="background: rgba(255,255,255,0.12); color: white; border-color: rgba(255,255,255,0.25);">Wiecej info</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <div class="ds-section" id="navbar">
+    <div class="ds-section-title">Topbar & Navbar</div>
+    <p class="ds-subtitle">Topbar: powder blue (#D8E8EF) — very light, not dark. Small contact info left (email, address, phone with icons), search/account/cart icons right. Navbar: pure white, logo in teal, nav links center, orange pill CTA right.</p>
+
+    <div>
+      <div class="topbar-demo">
+        <div class="topbar-contact">
+          <span>kontakt@sobierajskidomek.pl</span>
+          <span>ul. Kochanowskiego 4, Poznan</span>
+          <span>+48 61 123 45 67</span>
+        </div>
+        <div class="topbar-icons">
+          <a href="#">[S]</a>
+          <a href="#">[U]</a>
+          <a href="#">[FB]</a>
+        </div>
+      </div>
+      <div class="navbar-demo">
+        <div class="nav-logo">sobie<span>Rajski</span> Domek</div>
+        <ul class="nav-links">
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">O NAS</a></li>
+          <li><a href="#">OFERTA</a></li>
+          <li><a href="#">REKRUTACJA</a></li>
+          <li><a href="#">DOFINANSOWANIE</a></li>
+          <li><a href="#">KONTAKT</a></li>
+        </ul>
+        <button class="btn btn-primary btn-sm">UMOW WIZYTE &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMS -->
+  <div class="ds-section" id="forms">
+    <div class="ds-section-title">Forms</div>
+    <p class="ds-subtitle">Minimal, clean white inputs. Subtle 1.5px border. Focus: teal ring. Rounded corners (r-sm). Label above with Nunito weight 600.</p>
+    <div class="ds-box" style="max-width: 560px;">
+      <div class="ds-grid ds-grid-2" style="margin-bottom: 16px;">
+        <div>
+          <label style="display: block; font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; color: var(--c-dark); margin-bottom: 6px;">Imie</label>
+          <input style="width: 100%; padding: 12px 18px; border: 1.5px solid var(--c-border); border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--c-text); outline: none;" type="text" placeholder="np. Anna">
+        </div>
+        <div>
+          <label style="display: block; font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; color: var(--c-dark); margin-bottom: 6px;">Nazwisko</label>
+          <input style="width: 100%; padding: 12px 18px; border: 1.5px solid var(--c-border); border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--c-text); outline: none;" type="text" placeholder="np. Kowalska">
+        </div>
+      </div>
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; color: var(--c-dark); margin-bottom: 6px;">Adres e-mail</label>
+        <input style="width: 100%; padding: 12px 18px; border: 1.5px solid var(--c-teal); border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--c-text); outline: none; box-shadow: 0 0 0 3px rgba(106,170,184,0.12);" type="email" value="anna@example.com">
+        <p style="font-size: 11px; color: var(--c-muted); margin-top: 4px;">Focus state: teal border + soft ring</p>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; color: var(--c-dark); margin-bottom: 6px;">Wiadomosc</label>
+        <textarea style="width: 100%; padding: 12px 18px; border: 1.5px solid var(--c-border); border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--c-text); outline: none; resize: vertical;" rows="3" placeholder="Napisz do nas..."></textarea>
+      </div>
+      <button class="btn btn-primary">Wyslij wiadomosc &rarr;</button>
+    </div>
+  </div>
+
+  <!-- CHIPS -->
+  <div class="ds-section" id="chips">
+    <div class="ds-section-title">Tags & Chips</div>
+    <p class="ds-subtitle">Pill-shaped. Neutral for category filters, orange for active/primary, teal for informational.</p>
+    <div class="ds-box">
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <span class="chip">Wszystkie</span>
+        <span class="chip chip-orange">Wolne miejsca</span>
+        <span class="chip chip-teal">Dofinansowanie ZUS</span>
+        <span class="chip">0–1 rok</span>
+        <span class="chip">1–3 lata</span>
+        <span class="chip chip-orange">Rekrutacja otwarta</span>
+        <span class="chip chip-teal">Nowe lokalizacje</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="ds-section" id="hero">
+    <div class="ds-section-title">Hero Section Pattern</div>
+    <p class="ds-subtitle">Left: eyebrow (orange uppercase) + Nunito 900 heading with orange brand name highlight + body text + CTA row + inline mini stats. Right: photo inside an organic steel-blue blob frame with dashed ring and dot accents.</p>
+    <div class="hero-demo">
+      <div>
+        <span class="hero-eyebrow">The Best Kindergarten</span>
+        <h1 class="hero-h1">Dolacz do naszej<br><span class="hl">sobie…Rajski</span><br>Domek rodziny</h1>
+        <p class="hero-body">Zapewniamy profesjonalna opieke i stymulujace srodowisko dla Twojego dziecka od 20. tygodnia zycia. Wiecej niz zlobek — to miejsce, gdzie dzieci sie rozwijaja.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary btn-lg">UMOW WIZYTE &rarr;</button>
+          <div style="display: flex; align-items: center; gap: 10px; color: var(--c-muted); font-size: 14px;">
+            <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--c-border); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--c-teal);">[T]</div>
+            +48 61 123 45 67
+          </div>
+        </div>
+        <div style="display: flex; gap: 28px; margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--c-border);">
+          <div>
+            <div style="font-family: 'Caveat', cursive; font-size: 36px; font-weight: 700; color: var(--c-teal); line-height: 1;">120+</div>
+            <div style="font-size: 12px; color: var(--c-muted); margin-top: 2px;">Dzieci rocznie</div>
+          </div>
+          <div style="width: 1px; background: var(--c-border);"></div>
+          <div>
+            <div style="font-family: 'Caveat', cursive; font-size: 36px; font-weight: 700; color: var(--c-teal); line-height: 1;">15+</div>
+            <div style="font-size: 12px; color: var(--c-muted); margin-top: 2px;">Lat doswiadczenia</div>
+          </div>
+          <div style="width: 1px; background: var(--c-border);"></div>
+          <div>
+            <div style="font-family: 'Caveat', cursive; font-size: 36px; font-weight: 700; color: var(--c-teal); line-height: 1;">2</div>
+            <div style="font-size: 12px; color: var(--c-muted); margin-top: 2px;">Lokalizacje</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-img-blob" style="position: relative; padding: 20px;">
+        <!-- Dashed ring offset behind the blob -->
+        <div style="position: absolute; inset: 0; border: 2px dashed var(--c-teal-frame); border-radius: 55% 45% 50% 50% / 45% 55% 45% 55%; pointer-events: none; opacity: 0.6;"></div>
+        <!-- The blob frame -->
+        <div class="blob-frame" style="background: var(--c-teal-frame); border-radius: var(--blob-hero); aspect-ratio: 1 / 1.1; width: 100%; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+          <div style="background: linear-gradient(160deg, var(--c-teal-soft) 0%, #c5d9e2 100%); position: absolute; inset: 0;"></div>
+          <div style="position: relative; z-index: 1; font-size: 80px; opacity: 0.4;">[Photo]</div>
+        </div>
+        <!-- Floating dot accents -->
+        <div style="position: absolute; width: 14px; height: 14px; background: var(--c-orange); border-radius: 50%; top: 18%; right: 8px;"></div>
+        <div style="position: absolute; width: 10px; height: 10px; background: var(--c-teal); border-radius: 50%; bottom: 22%; left: 6px;"></div>
+      </div>
+    </div>
+    <!-- Dashed SVG curve below hero — BubaKids decorative element -->
+    <div style="padding: 24px 32px; background: white; border: 1px solid var(--c-border); border-top: none; border-radius: 0 0 var(--r-lg) var(--r-lg);">
+      <p style="font-size: 12px; color: var(--c-muted); margin-bottom: 8px;">Dashed SVG path decoration that runs below/between sections:</p>
+      <svg width="100%" height="60" viewBox="0 0 800 60" fill="none" preserveAspectRatio="none">
+        <path d="M0 40 Q 200 5 400 30 Q 600 55 800 20" class="deco-dashed-line"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="ds-section" id="stats">
+    <div class="ds-section-title">Stats Bar</div>
+    <p class="ds-subtitle">Full-width warm cream (#F2E5CC) rounded rectangle with r-2xl (64px). Three columns, subtle dividers. Large Caveat numbers in teal, Nunito 700 label, Inter body below.</p>
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-num">769</div>
+        <div class="stat-label">Szczesliwe dzieci</div>
+        <div class="stat-body">Kazdego roku otaczamy troska setki maluchow z Poznania i okolic</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">32K</div>
+        <div class="stat-label">Godzin opieki</div>
+        <div class="stat-body">Kazde dziecko otoczone jest stala, indywidualna uwaga naszych specjalistow</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">184</div>
+        <div class="stat-label">Certyfikatow</div>
+        <div class="stat-body">Nasz zespol posiada aktualne certyfikaty i uprawnienia do pracy z dziecmi</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT SPLIT -->
+  <div class="ds-section" id="about">
+    <div class="ds-section-title">About Split Pattern</div>
+    <p class="ds-subtitle">Left: photo with organic corner radius + dashed offset ring + large orange blob shape behind/under the photo. Right: eyebrow + Nunito heading + body + feature rows with teal circle icon outlines.</p>
+    <div class="about-split ds-box">
+      <div class="about-photo-wrap">
+        <div class="about-orange-blob"></div>
+        <div class="about-photo">
+          <span style="position: relative; z-index: 1; font-size: 80px; color: rgba(0,0,0,0.2);">[Photo]</span>
+        </div>
+      </div>
+      <div>
+        <span class="deco-eyebrow">Kindergarten</span>
+        <h2 style="font-family: 'Nunito', sans-serif; font-size: 40px; font-weight: 900; color: var(--c-dark); margin-top: 6px; margin-bottom: 14px; letter-spacing: -0.5px; line-height: 1.1;">O nas</h2>
+        <p style="color: var(--c-muted); font-size: 15px; line-height: 1.7; margin-bottom: 28px;">Sobie...Rajski Domek to prywatny zlobek w Poznaniu, gdzie kazde dziecko jest otoczone indywidualna troska. Tworzymy bezpieczne, radosne i rozwijajace srodowisko.</p>
+        <div class="about-feature">
+          <div class="about-feature-icon">[S]</div>
+          <div>
+            <div class="about-feature-title">Doswiadczeni opiekunowie</div>
+            <div class="about-feature-body">Wykwalifikowana kadra z doswiadczeniem w pracy z dziecmi od 0 do 3 lat</div>
+          </div>
+        </div>
+        <div class="about-feature">
+          <div class="about-feature-icon">[U]</div>
+          <div>
+            <div class="about-feature-title">Indywidualne podejscie</div>
+            <div class="about-feature-body">Program dostosowany do etapu rozwoju i potrzeb kazdego dziecka</div>
+          </div>
+        </div>
+        <div class="about-feature">
+          <div class="about-feature-icon">[H]</div>
+          <div>
+            <div class="about-feature-title">Partnerstwo z rodzicami</div>
+            <div class="about-feature-body">Regularna komunikacja, dziennik elektroniczny, otwarte drzwi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARDS -->
+  <div class="ds-section" id="cards">
+    <div class="ds-section-title">Cards</div>
+    <p class="ds-subtitle">White cards with large radius. Feature icons are teal circle outlines (NOT filled squares) — thin line style matching BubaKids reference.</p>
+    <div class="ds-grid ds-grid-3">
+      <div class="card">
+        <div class="card-icon-wrap">[A]</div>
+        <div class="card-title">Zajecia kreatywne</div>
+        <div class="card-body">Plastyka, muzyka i teatrzyk rozwijajace wyobraznie i zdolnosci manualne</div>
+      </div>
+      <div class="card">
+        <div class="card-icon-wrap">[B]</div>
+        <div class="card-title">Stymulacja sensoryczna</div>
+        <div class="card-body">Profesjonalny kacik sensoryczny z elementami terapii zajeciowej</div>
+      </div>
+      <div class="card">
+        <div class="card-icon-wrap">[C]</div>
+        <div class="card-title">Ogrod i spacery</div>
+        <div class="card-body">Codzienne zabawy na swiezym powietrzu w ogrodzonym ogrodzie</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOBS -->
+  <div class="ds-section" id="blobs">
+    <div class="ds-section-title">Blob Shapes</div>
+    <p class="ds-subtitle">Four organic CSS border-radius presets. Hero blob uses --c-teal-frame (light steel-blue). About blob uses --c-orange behind photo. Decorative blobs use soft tints.</p>
+    <div class="blob-showcase">
+      <div class="blob-box" style="background: var(--c-teal-frame); border-radius: var(--blob-hero);">
+        <span class="blob-label">blob-hero</span>
+        <span class="blob-sub">photo frame<br>--c-teal-frame</span>
+      </div>
+      <div class="blob-box" style="background: var(--c-orange); border-radius: var(--blob-about);">
+        <span class="blob-label">blob-about</span>
+        <span class="blob-sub">behind photo<br>--c-orange</span>
+      </div>
+      <div class="blob-box" style="background: var(--c-teal-soft); border-radius: var(--blob-deco); border: 2px solid var(--c-teal-frame);">
+        <span class="blob-label" style="color: var(--c-teal-dark);">blob-deco</span>
+        <span class="blob-sub" style="color: var(--c-muted);">bg accent<br>--c-teal-soft</span>
+      </div>
+      <div class="blob-box" style="background: var(--c-orange-soft); border-radius: 40% 60% 65% 35% / 60% 40% 50% 50%; border: 2px dashed var(--c-teal-frame);">
+        <span class="blob-label" style="color: var(--c-orange);">blob-dashed</span>
+        <span class="blob-sub" style="color: var(--c-muted);">dashed outline<br>decoration</span>
+      </div>
+    </div>
+    <div class="ds-box" style="margin-top: 20px;">
+      <p style="font-size: 13px; color: var(--c-muted);">Animate blob shape with GSAP for a slow, breathing effect:</p>
+      <pre style="font-size: 12px; color: var(--c-teal-dark); margin-top: 8px; background: var(--c-teal-soft); padding: 12px; border-radius: 8px; overflow-x: auto;">gsap.to(".hero-blob", {
+  borderRadius: "40% 60% 55% 45% / 60% 40% 50% 50%",
+  duration: 8, repeat: -1, yoyo: true, ease: "sine.inOut"
+});</pre>
+    </div>
+  </div>
+
+  <!-- DECORATIVE ELEMENTS -->
+  <div class="ds-section" id="decos">
+    <div class="ds-section-title">Decorative Elements</div>
+    <p class="ds-subtitle">Dashed SVG curves between sections, dashed circle rings offset from blobs, small floating dots (orange + teal), and the eyebrow label.</p>
+    <div class="ds-box">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+
+        <div>
+          <p class="ds-token-label" style="margin-bottom: 12px;">Dashed SVG curve (between sections)</p>
+          <svg width="100%" height="56" viewBox="0 0 600 56" fill="none">
+            <path d="M0 45 Q 150 8 300 28 Q 450 48 600 12" stroke="#BECFDA" stroke-width="2" stroke-dasharray="8 5" fill="none"/>
+          </svg>
+          <p style="font-size: 12px; color: var(--c-muted); margin-top: 8px;">stroke: --c-teal-frame · dasharray: 8 5</p>
+        </div>
+
+        <div>
+          <p class="ds-token-label" style="margin-bottom: 12px;">Dashed ring offset from blob</p>
+          <div style="position: relative; width: 120px; height: 120px; margin: 0 auto;">
+            <div style="position: absolute; inset: 0; border: 2px dashed var(--c-teal-frame); border-radius: 50%;"></div>
+            <div style="position: absolute; inset: 14px; background: var(--c-teal-frame); border-radius: 50%; opacity: 0.5;"></div>
+          </div>
+          <p style="font-size: 12px; color: var(--c-muted); margin-top: 8px; text-align: center;">Ring 110% of blob size, same color</p>
+        </div>
+
+        <div>
+          <p class="ds-token-label" style="margin-bottom: 12px;">Floating dot accents</p>
+          <div style="display: flex; gap: 14px; align-items: center; padding: 16px 0;">
+            <div style="width: 14px; height: 14px; background: var(--c-orange); border-radius: 50%;"></div>
+            <div style="width: 10px; height: 10px; background: var(--c-teal); border-radius: 50%;"></div>
+            <div style="width: 8px; height: 8px; background: var(--c-teal-frame); border-radius: 50%;"></div>
+            <div style="width: 6px; height: 6px; background: var(--c-orange-soft); border: 2px solid var(--c-orange); border-radius: 50%;"></div>
+          </div>
+          <p style="font-size: 12px; color: var(--c-muted);">Position absolutely near blob edges</p>
+        </div>
+
+        <div>
+          <p class="ds-token-label" style="margin-bottom: 12px;">Eyebrow label</p>
+          <span class="deco-eyebrow">The Best Kindergarten</span>
+          <p style="font-size: 12px; color: var(--c-muted); margin-top: 8px;">Inter 700 · 11px · uppercase · 3px letter-spacing · --c-orange</p>
+        </div>
+
+        <div>
+          <p class="ds-token-label" style="margin-bottom: 12px;">Illustrated character placeholder</p>
+          <div style="width: 80px; height: 80px; background: var(--c-teal-soft); border-radius: 50%; border: 2px dashed var(--c-teal-frame); display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--c-teal);">[D]</div>
+          <p style="font-size: 12px; color: var(--c-muted); margin-top: 8px;">Dinosaur / cactus SVG illustrations — placed decoratively, not inline</p>
+        </div>
+
+        <div>
+          <p class="ds-token-label" style="margin-bottom: 12px;">Slide carousel dots (hero)</p>
+          <div style="display: flex; gap: 8px; align-items: center; padding: 12px 0;">
+            <div style="width: 10px; height: 10px; background: var(--c-teal); border-radius: 50%;"></div>
+            <div style="width: 10px; height: 10px; background: var(--c-border); border-radius: 50%;"></div>
+            <div style="width: 10px; height: 10px; background: var(--c-border); border-radius: 50%;"></div>
+          </div>
+          <p style="font-size: 12px; color: var(--c-muted);">Active dot: --c-teal · inactive: --c-border</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION -->
+  <div class="ds-section" id="accordion">
+    <div class="ds-section-title">Accordion / FAQ</div>
+    <p class="ds-subtitle">White cards, large r-md border radius. Question in Nunito 700 dark. Orange circle expand icon (outlined, not filled). Answer in Inter 14px muted.</p>
+    <div style="max-width: 680px;">
+      <div class="accordion-item">
+        <div class="accordion-q">
+          Od jakiego wieku przyjmujecie dzieci do zlobka?
+          <div class="acc-icon">+</div>
+        </div>
+        <div class="accordion-a">Przyjmujemy dzieci od ukonczenia 20. tygodnia zycia do 3 roku zycia. W wyjatkowych przypadkach mozliwe jest przedluzenie opieki do 4 roku zycia.</div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-q">Jakie sa godziny otwarcia placowki? <div class="acc-icon">+</div></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-q">Czy oferujecie dofinansowanie z ZUS-u? <div class="acc-icon">+</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BANNER -->
+  <div class="ds-section" id="cta">
+    <div class="ds-section-title">CTA Banner</div>
+    <p class="ds-subtitle">Orange background, r-2xl rounded, white Nunito heading, white pill button. Decorative blob circles in background at 8% opacity.</p>
+    <div class="cta-card">
+      <div class="cta-text" style="position: relative; z-index: 1;">
+        <h2>Gotowi na pierwsze kroki?</h2>
+        <p>Umow bezplatna wizyte i poznaj nas osobiscie.</p>
+      </div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1;">
+        <button class="btn btn-white btn-lg">UMOW WIZYTE &rarr;</button>
+        <button class="btn btn-lg" style="background: rgba(255,255,255,0.15); color: white; border-color: rgba(255,255,255,0.3);">Zadzwon do nas</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHANGE NOTES -->
+  <div class="ds-section" id="notes">
+    <div class="ds-section-title">v2 Corrections</div>
+    <p class="ds-subtitle">What was wrong in v1 and what was fixed:</p>
+    <div class="ds-grid ds-grid-2">
+      <div class="ds-box" style="border-left: 4px solid #e44;">
+        <p class="ds-token-label" style="margin-bottom: 14px; color: #c44;">Fixed in v2</p>
+        <div style="display: grid; gap: 10px;">
+          <div style="font-size: 14px; color: var(--c-text);">Playfair Display serif headings <strong>removed</strong> — was completely wrong. All headings now Nunito 800/900.</div>
+          <div style="font-size: 14px; color: var(--c-text);">Stat numbers font changed from Playfair Display to <strong>Caveat</strong> (handwritten/sketch) — matches reference exactly.</div>
+          <div style="font-size: 14px; color: var(--c-text);">Teal color corrected from dark #3B7A8C to pastel <strong>#6AAAB8</strong>.</div>
+          <div style="font-size: 14px; color: var(--c-text);">Orange corrected from #E8845A to warmer <strong>#F07838</strong>.</div>
+          <div style="font-size: 14px; color: var(--c-text);">Topbar corrected from dark navy to powder blue <strong>#D8E8EF</strong>.</div>
+          <div style="font-size: 14px; color: var(--c-text);">Photo blob frame now uses light steel-blue (#BECFDA) not cream.</div>
+          <div style="font-size: 14px; color: var(--c-text);">About section now shows orange blob behind photo (key BubaKids pattern).</div>
+          <div style="font-size: 14px; color: var(--c-text);">Card icons changed from filled squares to <strong>teal circle outlines</strong>.</div>
+        </div>
+      </div>
+      <div class="ds-box" style="border-left: 4px solid var(--c-teal);">
+        <p class="ds-token-label" style="margin-bottom: 14px; color: var(--c-teal-dark);">Unchanged</p>
+        <div style="display: grid; gap: 10px;">
+          <div style="font-size: 14px; color: var(--c-text);">Orange CTA buttons — pill shape, bold, same concept</div>
+          <div style="font-size: 14px; color: var(--c-text);">Inter for body copy and UI elements</div>
+          <div style="font-size: 14px; color: var(--c-text);">Dashed decorative rings and SVG curve lines</div>
+          <div style="font-size: 14px; color: var(--c-text);">Cream/beige stats bar background</div>
+          <div style="font-size: 14px; color: var(--c-text);">Organic blob shapes for photo frames</div>
+          <div style="font-size: 14px; color: var(--c-text);">Two-column hero split layout</div>
+          <div style="font-size: 14px; color: var(--c-text);">Overall section structure and spacing rhythm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /ds-content -->
+</body>
+</html>

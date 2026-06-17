@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architektura Strony — sobie…Rajski Domek</title>
+<style>
+  :root {
+    --bg: #f8f7f4;
+    --surface: #ffffff;
+    --border: #e8e4de;
+    --text: #1a1a1a;
+    --text-muted: #6b6660;
+    --accent: #d4845a;
+    --accent-soft: #fdf0e8;
+    --green: #4a8c6f;
+    --green-soft: #eaf4ee;
+    --blue: #4a72a0;
+    --blue-soft: #eef3fa;
+    --red: #c0392b;
+    --red-soft: #fdf0ee;
+    --yellow: #c9962a;
+    --yellow-soft: #fdf7e8;
+    --radius: 10px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .doc-header {
+    background: var(--text);
+    color: white;
+    padding: 48px 64px;
+  }
+  .doc-header .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .doc-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  .doc-header .subtitle {
+    color: #aaa;
+    font-size: 15px;
+  }
+  .doc-header .meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+    font-size: 12px;
+    color: #888;
+  }
+  .doc-header .meta span strong {
+    color: white;
+    display: block;
+    font-size: 13px;
+  }
+
+  /* MAIN LAYOUT */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 64px;
+  }
+
+  /* SECTION TITLES */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    margin-bottom: 28px;
+  }
+  .section-gap { margin-bottom: 60px; }
+
+  /* AUDIT CARDS */
+  .audit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .audit-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+  }
+  .audit-card .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .audit-card.problems .card-label { color: var(--red); }
+  .audit-card.wins .card-label { color: var(--green); }
+  .audit-card ul {
+    list-style: none;
+  }
+  .audit-card ul li {
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+    font-size: 13px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+  .audit-card ul li:last-child { border-bottom: none; }
+  .audit-card.problems ul li::before {
+    content: "✕";
+    position: absolute; left: 0;
+    color: var(--red);
+    font-size: 11px;
+    top: 7px;
+  }
+  .audit-card.wins ul li::before {
+    content: "✓";
+    position: absolute; left: 0;
+    color: var(--green);
+    font-size: 11px;
+    top: 7px;
+  }
+
+  /* NAV PROPOSAL */
+  .nav-proposal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+  }
+  .nav-bar {
+    background: var(--text);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.3px;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-items {
+    display: flex;
+    gap: 4px;
+  }
+  .nav-item {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #ccc;
+    cursor: default;
+    transition: all 0.15s;
+  }
+  .nav-item.active {
+    background: var(--accent);
+    color: white;
+  }
+  .nav-item:hover:not(.active) {
+    background: rgba(255,255,255,0.1);
+    color: white;
+  }
+  .nav-utility {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-utility .util-link {
+    font-size: 12px;
+    color: #888;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: default;
+  }
+  .nav-utility .util-btn {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: default;
+  }
+  .nav-note {
+    padding: 12px 24px;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: #f9f9f9;
+    border-top: 1px solid var(--border);
+  }
+  .nav-note strong { color: var(--text); }
+
+  /* PAGE CARDS */
+  .pages-grid {
+    display: grid;
+    gap: 20px;
+  }
+
+  .page-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .page-header {
+    padding: 18px 24px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .page-number {
+    background: var(--text);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .page-title-group {
+    flex: 1;
+  }
+
+  .page-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+  }
+
+  .page-url {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+    margin-top: 2px;
+  }
+
+  .page-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .badge-primary { background: var(--accent-soft); color: var(--accent); }
+  .badge-parent { background: var(--blue-soft); color: var(--blue); }
+  .badge-utility { background: var(--border); color: var(--text-muted); }
+
+  .page-body {
+    padding: 20px 24px;
+  }
+
+  .page-goal {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    padding: 10px 14px;
+    background: var(--bg);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+  }
+  .page-goal strong { color: var(--text); }
+
+  .sections-list {
+    display: grid;
+    gap: 8px;
+  }
+
+  .site-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+  }
+
+  .section-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .section-content {
+    flex: 1;
+  }
+
+  .section-name {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--text);
+  }
+
+  .section-detail {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .section-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .tag-cta { background: var(--accent-soft); color: var(--accent); }
+  .tag-trust { background: var(--green-soft); color: var(--green); }
+  .tag-info { background: var(--blue-soft); color: var(--blue); }
+  .tag-media { background: #f3eeff; color: #7b5ea7; }
+  .tag-form { background: var(--yellow-soft); color: var(--yellow); }
+  .tag-new { background: var(--red-soft); color: var(--red); }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* FOOTER */
+  .footer-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-top: 20px;
+  }
+  .footer-section h3 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .footer-col h4 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .footer-col ul {
+    list-style: none;
+  }
+  .footer-col ul li {
+    font-size: 12.5px;
+    color: var(--text);
+    padding: 3px 0;
+  }
+
+  /* PRIORITY TABLE */
+  .priority-list {
+    display: grid;
+    gap: 10px;
+  }
+  .priority-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+  .priority-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 5px;
+    flex-shrink: 0;
+    min-width: 60px;
+    text-align: center;
+  }
+  .p-high { background: #fde8e8; color: #c0392b; }
+  .p-med { background: var(--yellow-soft); color: var(--yellow); }
+  .p-low { background: var(--green-soft); color: var(--green); }
+  .priority-item .pi-text {
+    font-size: 13px;
+    color: var(--text);
+  }
+  .priority-item .pi-note {
+    margin-left: auto;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 48px 0;
+  }
+
+  /* DOC FOOTER */
+  .doc-footer {
+    background: var(--text);
+    color: #666;
+    padding: 24px 64px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .doc-footer span { color: #888; }
+  .doc-footer strong { color: white; }
+</style>
+</head>
+<body>
+
+<!-- DOCUMENT HEADER -->
+<div class="doc-header">
+  <div class="label">UX / UI Audit & Site Architecture</div>
+  <h1>sobie…Rajski Domek — Nowa Architektura Strony</h1>
+  <div class="subtitle">Pełna analiza istniejącej strony + profesjonalna struktura treści i nawigacji</div>
+  <div class="meta">
+    <span><strong>Klient</strong>sobierajskidomek.pl</span>
+    <span><strong>Typ</strong>Żłobek prywatny, Poznań</span>
+    <span><strong>Lokalizacje</strong>Drwęskiego 13 + Wiosenna 6</span>
+    <span><strong>Dzieci</strong>od 20 tyg. do 3 lat</span>
+    <span><strong>Data</strong>Czerwiec 2026</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- AUDIT -->
+  <div class="section-gap">
+    <div class="section-label">Krok 1</div>
+    <div class="section-title">Audyt istniejącej strony</div>
+    <div class="section-desc">Co działa, a co trzeba naprawić — diagnoza przed przebudową.</div>
+
+    <div class="audit-grid">
+      <div class="audit-card problems">
+        <div class="card-label">Problemy do naprawienia</div>
+        <ul>
+          <li>Nawigacja ma 10+ pozycji, w tym dokumenty prawne (Regulamin, Polityka ochrony) widoczne w głównym menu</li>
+          <li>Strona główna to ściana tekstu pogrubionego bez hierarchii wizualnej ani sekcji</li>
+          <li>Brak cennika — URL mówi /rekrutacja-i-cennik/ ale żadnych cen nie ma</li>
+          <li>Strona Dofinansowania jest prawie pusta — kluczowa informacja dla rodziców</li>
+          <li>FAQ (Pytania) to lista linków do osobnych podstron zamiast akordeonów na jednej stronie</li>
+          <li>Brak CTA (przycisków akcji) — "Zapisz dziecko", "Zadzwoń", "Umów wizytę"</li>
+          <li>Dwie lokalizacje są wspomniane tylko w stopce — brak dedykowanej prezentacji</li>
+          <li>"Strefa rodzica" pojawia się i znika z nawigacji bez logiki</li>
+          <li>Brak sekcji z opiniami/referencjami rodziców</li>
+          <li>Brak info o kadrze/pracownikach — kto opiekuje się dziećmi?</li>
+          <li>Galeria niedostępna/niezindeksowana — rodzice jej szukają</li>
+          <li>Brak jasnego opisu procesu zapisu krok po kroku</li>
+        </ul>
+      </div>
+      <div class="audit-card wins">
+        <div class="card-label">Co jest dobre — zachowujemy</div>
+        <ul>
+          <li>Bogaty autorski program edukacyjny (Pro Symfonika, Zielone Nutki, angielski, logopedia, etc.)</li>
+          <li>Własna kuchnia z oceną Sanepidu — unikalna przewaga</li>
+          <li>Monitoring sal z dostępem dla rodziców — duży argument</li>
+          <li>Zarejestrowany żłobek od 2013 roku — wiarygodność</li>
+          <li>Dwie lokalizacje w różnych dzielnicach Poznania</li>
+          <li>Współfinansowanie z Miasta Poznania — obniża koszt dla rodzica</li>
+          <li>Elastyczne podejście do diety (wegetariańska, wegańska, alergie)</li>
+          <li>Zajęcia na placu zabaw, małe kino, sesje fotograficzne, bale</li>
+          <li>Wykwalifikowany personel: położne, pedagodzy, psycholodzy dziecięcy</li>
+          <li>Treningi czystości — praktyczna usługa dla rodziców</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- NAVIGATION -->
+  <div class="section-gap">
+    <div class="section-label">Krok 2</div>
+    <div class="section-title">Nowa nawigacja — z 10 pozycji do 6 + utility</div>
+    <div class="section-desc">Czysta, logiczna nawigacja dla rodzica który szuka żłobka dla dziecka.</div>
+
+    <div class="nav-proposal">
+      <div class="nav-bar">
+        <div class="nav-logo">sobie…<span>Rajski</span> Domek</div>
+        <div class="nav-items">
+          <div class="nav-item">O nas</div>
+          <div class="nav-item">Oferta</div>
+          <div class="nav-item">Lokalizacje</div>
+          <div class="nav-item active">Rekrutacja</div>
+          <div class="nav-item">Galeria</div>
+          <div class="nav-item">Kontakt</div>
+        </div>
+        <div class="nav-utility">
+          <div class="util-link">📘 Facebook</div>
+          <div class="util-btn">Strefa Rodzica</div>
+        </div>
+      </div>
+      <div class="nav-note">
+        <strong>Usunięte z głównego menu → przeniesione do stopki:</strong>
+        Regulamin · Polityka ochrony · Praca · Cookies &nbsp;|&nbsp;
+        <strong>Połączone:</strong> "Nasze żłobki" + "Lokalizacje" w jedno · "Nasza oferta" uproszczone do "Oferta" &nbsp;|&nbsp;
+        <strong>Przeniesione do utility nav:</strong> Strefa Rodzica (login)
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PAGES -->
+  <div class="section-gap">
+    <div class="section-label">Krok 3</div>
+    <div class="section-title">Architektura stron — sekcja po sekcji</div>
+    <div class="section-desc">Każda strona z jasnym celem, kolejnością sekcji i wskazówkami UX.</div>
+
+    <div class="pages-grid">
+
+      <!-- PAGE 1: HOMEPAGE -->
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">1</div>
+          <div class="page-title-group">
+            <div class="page-title">Strona Główna</div>
+            <div class="page-url">sobierajskidomek.pl / (homepage)</div>
+          </div>
+          <div class="page-badge badge-primary">Najważniejsza</div>
+        </div>
+        <div class="page-body">
+          <div class="page-goal">
+            <strong>Cel strony:</strong> Przekonać rodzica w 10 sekund, że to właściwy żłobek — i skłonić go do zadzwonienia lub zapisu. Strona główna to konwersja, nie encyklopedia.
+          </div>
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">🦸</div>
+              <div class="section-content">
+                <div class="section-name">HERO — Nagłówek + tagline + dwa przyciski akcji</div>
+                <div class="section-detail">Zdjęcie dzieci w tle (ciepłe, naturalne). Nagłówek: "Twoje dziecko w dobrych rękach — w samym sercu Poznania". Podtytuł: "Prywatny żłobek dla dzieci od 20 tygodnia do 3 lat · 2 lokalizacje · Otwarte cały rok".</div>
+                <div class="section-tags">
+                  <span class="tag tag-cta">CTA: Zapisz dziecko</span>
+                  <span class="tag tag-cta">CTA: Zadzwoń teraz</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="site-section">
+              <div class="section-icon">✅</div>
+              <div class="section-content">
+                <div class="section-name">TRUST BAR — Cztery filary zaufania w jednym rzędzie</div>
+                <div class="section-detail">Ikony + krótkie hasła: "Zarejestrowany od 2013" · "Dofinansowanie z Miasta Poznania" · "Własna kuchnia z certyfikatem Sanepidu" · "Monitoring z dostępem dla rodziców"</div>
+                <div class="section-tags"><span class="tag tag-trust">Social proof</span></div>
+              </div>
+            </div>
+
+            <div class="site-section">
+              <div class="section-icon">💡</div>
+              <div class="section-content">
+                <div class="section-name">DLACZEGO MY — 6 kart z przewagami</div>
+                <div class="section-detail">Karta 1: Domowa kuchnia (Sanepid, alergie, diety). Karta 2: Certyfikowany personel (położne, pedagodzy, psycholodzy). Karta 3: Bogaty program edukacyjny. Karta 4: Plac zabaw + spacery. Karta 5: Monitoring "na żywo". Karta 6: Dofinansowanie obniża opłaty.</div>
+                <div class="section-tags"><span class="tag tag-trust">Wyróżniki</span></div>
+              </div>
+            </div>
+
+            <div class="site-section">
+              <div class="section-icon">🎓</div>
+              <div class="section-content">
+                <div class="section-name">PROGRAM — Skrót programu edukacyjnego z ikonami</div>
+                <div class="section-detail">Muzyka (Pro Symfonika) · Teatr (Zielone Nutki) · Angielski · Logopedia · Zajęcia plastyczne · Bale · Kino · Sesje foto. Link: "Zobacz pełny program →"</div>
+                <div class="section-tags"><span class="tag tag-info">Przegląd</span></div>
+              </div>
+            </div>
+
+            <div class="site-section">
+              <div class="section-icon">📍</div>
+              <div class="section-content">
+                <div class="section-name">LOKALIZACJE — Dwie karty lokalizacji obok siebie</div>
+                <div class="section-detail">Lewa karta: Drwęskiego 13 (Podolany/Ogrody). Prawa karta: Wiosenna 6 (Grunwald). Każda z adresem, godzinami (7:00–17:30), mapką miniaturową i przyciskiem "Sprawdź trasę".</div>
+                <div class="section-tags"><span class="tag tag-info">Lokalizacje</span></div>
+              </div>
+            </div>
+
+            <div class="site-section">
+              <div class="section-icon">💰</div>
+              <div class="section-content">
+                <div class="section-name">DOFINANSOWANIE — Call-out box z oszczędnościami</div>
+                <div class="section-detail">Wyróżniony baner: "Skorzystaj z dofinansowania — program Aktywnie w Żłobku z Urzędu Miasta Poznania. Zmniejsz miesięczny koszt opieki." Przycisk: "Jak uzyskać dofinansowanie →"</div>
+                <div class="section-tags"><span class="tag tag-cta">Konwersja</span><span class="tag tag-trust">Oszczędność</span></div>
+              </div>
+            </div>
+
+            <div class="site-section">
+              <div class="section-icon">📸</div>
+              <div class="section-content">
+                <div class="section-name">GALERIA — 6–8 zdjęć podgląd (mozaika/grid)</div>
+                <div class="section-detail">Codzienne życie w żłobku, zajęcia, posiłki, plac zabaw. Przycisk: "Zobacz całą galerię →"</div>
+                <div class="section-tags"><span class="tag tag-media">Zdjęcia</span></div>
+              </div>
+            </div>
+
+            <div class="site-section">
+              <div class="section-icon">❓</div>
+              <div class="section-content">
+                <div class="section-name">FAQ — 5 najczęstszych pytań (akordeony inline)</div>
+                <div class="section-detail">Najważniejsze pytania rozwinięte bezpośrednio na stronie: Ile kosztuje? Jak zapisać dziecko? Od kiedy możemy zacząć? Czy jedzenie jest w cenie? Czy są miejsca?</div>
+                <div class="section-tags"><span class="tag tag-info">Obsługa obiekcji</span></div>
+              </div>
+            </div>
+
+            <div class="site-section">
+              <div class="section-icon">📞</div>
+              <div class="section-content">
+                <div class="section-name">CTA KOŃCOWE — Baner "Zapisz dziecko już dziś"</div>
+                <div class="section-detail">Ciemne tło, duży numer telefonu 725 119 962, adres e-mail, przyciski zapisu. "Nabór trwa cały rok — sprawdź dostępność miejsc."</div>
+                <div class="section-tags"><span class="tag tag-cta">Konwersja końcowa</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 2: O NAS -->
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">2</div>
+          <div class="page-title-group">
+            <div class="page-title">O nas / Nasze Żłobki</div>
+            <div class="page-url">sobierajskidomek.pl/o-nas</div>
+          </div>
+          <div class="page-badge badge-primary">Główna</div>
+        </div>
+        <div class="page-body">
+          <div class="page-goal">
+            <strong>Cel strony:</strong> Budowanie zaufania. Rodzic chce wiedzieć: kto prowadzi żłobek, kto zajmuje się jego dzieckiem, czy to bezpieczne miejsce.
+          </div>
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">🏠</div>
+              <div class="section-content">
+                <div class="section-name">MISJA I WARTOŚCI</div>
+                <div class="section-detail">Krótki akapit o filozofii opieki: indywidualne podejście, domowe ciepło, bezpieczeństwo, harmonijny rozwój. Nie lista punktorów — opowiadana historia.</div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">📅</div>
+              <div class="section-content">
+                <div class="section-name">HISTORIA — Timeline od 2009</div>
+                <div class="section-detail">Krótka oś czasu: Rok założenia (2009) → Rejestracja w Mieście (2013) → Otwarcie 2. lokalizacji → Teraz. Pokazuje stabilność i doświadczenie.</div>
+                <div class="section-tags"><span class="tag tag-trust">Wiarygodność</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">👩‍⚕️</div>
+              <div class="section-content">
+                <div class="section-name">KADRA — Zdjęcia + opisy opiekunek</div>
+                <div class="section-detail">Karty z imionami, kwalifikacjami (położna / pedagog / psycholog dziecięcy), krótkim bio. To KLUCZOWA sekcja — rodzice chcą widzieć twarze osób, którym powierzają dziecko.</div>
+                <div class="section-tags"><span class="tag tag-trust">Zaufanie</span><span class="tag tag-new">Brak na obecnej stronie</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">📋</div>
+              <div class="section-content">
+                <div class="section-name">CERTYFIKATY I WYMAGANIA PRAWNE</div>
+                <div class="section-detail">Wpis do rejestru żłobków Miasta Poznania · Certyfikat Sanepidu dla kuchni · Zgodność z ustawą o opiece nad dziećmi do lat 3 · Spełnienie wymogów Straży Pożarnej.</div>
+                <div class="section-tags"><span class="tag tag-trust">Compliance</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">💬</div>
+              <div class="section-content">
+                <div class="section-name">OPINIE RODZICÓW</div>
+                <div class="section-detail">3–5 cytatów z Google/Facebook od rodziców ze zdjęciem, imieniem, oceną gwiazdkową. Jeśli brak — link do profilu Facebook z codziennymi relacjami.</div>
+                <div class="section-tags"><span class="tag tag-trust">Social proof</span><span class="tag tag-new">Brak na obecnej stronie</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 3: OFERTA I PROGRAM -->
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">3</div>
+          <div class="page-title-group">
+            <div class="page-title">Oferta & Program Edukacyjny</div>
+            <div class="page-url">sobierajskidomek.pl/oferta</div>
+          </div>
+          <div class="page-badge badge-primary">Główna</div>
+        </div>
+        <div class="page-body">
+          <div class="page-goal">
+            <strong>Cel strony:</strong> Pokazać wartość i bogactwo programu — żeby rodzic zrozumiał, że to nie "przechowalnia", ale miejsce gdzie dziecko naprawdę się rozwija.
+          </div>
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">🍽️</div>
+              <div class="section-content">
+                <div class="section-name">OPIEKA — Podstawowe info o opiece</div>
+                <div class="section-detail">Wiek: od 20 tygodnia do 3 lat. Godziny: 7:00–17:30, pon–pt, cały rok. Grupy wiekowe. Co jest wliczone w cenę: pobyt, wyżywienie, zajęcia, środki higieny, ubezpieczenie NNW, pieluchy.</div>
+                <div class="section-tags"><span class="tag tag-info">Fakty</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">🎵</div>
+              <div class="section-content">
+                <div class="section-name">PROGRAM EDUKACYJNY — Karty według kategorii</div>
+                <div class="section-detail">
+                  Muzyka & Instrumenty (Pro Symfonika) · Teatr (Zielone Nutki, przedstawienia) · Zajęcia ruchowe · Plastyka i konstrukcja · Język angielski · Logopedia (gimnastyka buzi i języka) · Wierszyki i piosenki · Treningi czystości · Sesje fotograficzne · Bale okolicznościowe · Małe kino · Plac zabaw
+                </div>
+                <div class="section-tags"><span class="tag tag-trust">Wyróżnik</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">🥕</div>
+              <div class="section-content">
+                <div class="section-name">WYŻYWIENIE — Filozofia i praktyka kuchni</div>
+                <div class="section-detail">Własna kuchnia z certyfikatem Sanepidu. Świeże warzywa, owoce, ryby, pełnowartościowe produkty zbożowe. Diety: wegetariańska, wegańska, alergie pokarmowe. Całodzienne wyżywienie dostosowane do wieku.</div>
+                <div class="section-tags"><span class="tag tag-trust">Unikalna przewaga</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">🤝</div>
+              <div class="section-content">
+                <div class="section-name">WSPARCIE RODZICÓW</div>
+                <div class="section-detail">Rozmowy indywidualne · Spotkania ze specjalistami · Warsztaty dla rodziców · Zebrania grupowe · Gazetki dydaktyczne · Pomoc pedagogiczna · Codzienny raport z zajęć na Facebooku.</div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">🔐</div>
+              <div class="section-content">
+                <div class="section-name">BEZPIECZEŃSTWO</div>
+                <div class="section-detail">Monitoring kamer "na żywo" — dostęp dla rodzica po 14 dniach od zapisania. Wyłącznie upoważnione osoby mogą odbierać dziecko. Brak podawania leków przez personel. Opłata za przekroczenie godzin odbioru.</div>
+                <div class="section-tags"><span class="tag tag-trust">Zaufanie</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 4: LOKALIZACJE -->
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">4</div>
+          <div class="page-title-group">
+            <div class="page-title">Nasze Lokalizacje</div>
+            <div class="page-url">sobierajskidomek.pl/lokalizacje</div>
+          </div>
+          <div class="page-badge badge-primary">Główna</div>
+        </div>
+        <div class="page-body">
+          <div class="page-goal">
+            <strong>Cel strony:</strong> Rodzic wybiera lokalizację bliżej domu lub pracy — każda musi być szczegółowo opisana jako oddzielna "marka miejsca".
+          </div>
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">🏡</div>
+              <div class="section-content">
+                <div class="section-name">LOKALIZACJA 1 — Drwęskiego 13 (Podolany/Ogrody)</div>
+                <div class="section-detail">Adres pełny · Godziny · Telefon · Mapa Google (embed) · Zdjęcia budynku i wnętrz · Opis: ile dzieci, ile grup, specyfika tej lokalizacji · Dostępne miejsca · Przycisk "Zapisz dziecko tutaj"</div>
+                <div class="section-tags"><span class="tag tag-cta">CTA</span><span class="tag tag-media">Zdjęcia</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">🏡</div>
+              <div class="section-content">
+                <div class="section-name">LOKALIZACJA 2 — Wiosenna 6 (Grunwald)</div>
+                <div class="section-detail">Adres pełny · Godziny · Telefon · Mapa Google (embed) · Zdjęcia budynku i wnętrz · Opis: ile dzieci, ile grup, specyfika tej lokalizacji · Dostępne miejsca · Przycisk "Zapisz dziecko tutaj"</div>
+                <div class="section-tags"><span class="tag tag-cta">CTA</span><span class="tag tag-media">Zdjęcia</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">🚗</div>
+              <div class="section-content">
+                <div class="section-name">DOJAZD — Komunikacja, parking</div>
+                <div class="section-detail">Dla każdej lokalizacji: linie MPK, parking przy żłobku, dostępność dla wózków. Prosta, praktyczna informacja.</div>
+                <div class="section-tags"><span class="tag tag-info">Praktyczne</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 5: REKRUTACJA & CENNIK -->
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">5</div>
+          <div class="page-title-group">
+            <div class="page-title">Rekrutacja & Cennik</div>
+            <div class="page-url">sobierajskidomek.pl/rekrutacja</div>
+          </div>
+          <div class="page-badge badge-primary">Priorytet</div>
+        </div>
+        <div class="page-body">
+          <div class="page-goal">
+            <strong>Cel strony:</strong> Usunąć wszelkie bariery do zapisu. Jasny proces krok po kroku + przejrzysty cennik = więcej zapisów.
+          </div>
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">📋</div>
+              <div class="section-content">
+                <div class="section-name">JAK SIĘ ZAPISAĆ — Timeline 5 kroków</div>
+                <div class="section-detail">
+                  Krok 1: Wypełnij formularz w systemie "Nabór" (nabor.pcss.pl) → Krok 2: Wygeneruj PDF i wyślij na sobierajskidomek@wp.pl → Krok 3: Zadzwoń lub czekaj na kontakt → Krok 4: Podpisz umowę i wpłać wpisowe → Krok 5: Witamy w żłobku! Ważna uwaga: nie wymagamy pieczątek pracodawców.
+                </div>
+                <div class="section-tags"><span class="tag tag-form">Formularz</span><span class="tag tag-cta">Akcja</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">💰</div>
+              <div class="section-content">
+                <div class="section-name">CENNIK — Co jest wliczone w opłatę miesięczną</div>
+                <div class="section-detail">
+                  Czytelna tabela lub lista: całodzienny pobyt · pełne wyżywienie (3 posiłki + podwieczorek) · wszystkie zajęcia i materiały plastyczne · opieka wykwalifikowanego personelu · ubezpieczenie NNW · pieluchy i środki higieny osobistej · dostęp do monitoringu. Opłata wpisowa: jednorazowa, przy podpisaniu umowy. Spóźnienie odbioru: 80 zł/h.
+                </div>
+                <div class="section-tags"><span class="tag tag-info">Transparentność</span><span class="tag tag-new">Brak na obecnej stronie</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">💳</div>
+              <div class="section-content">
+                <div class="section-name">DOFINANSOWANIE — Skrót + link do pełnej strony</div>
+                <div class="section-detail">Mini-baner: "Skorzystaj z programu Aktywnie w Żłobku — dofinansowanie z Urzędu Miasta Poznania obniża Twoje miesięczne opłaty." Link: "Dowiedz się więcej →"</div>
+                <div class="section-tags"><span class="tag tag-trust">Oszczędność</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">📞</div>
+              <div class="section-content">
+                <div class="section-name">MASZ PYTANIA? — Bezpośredni kontakt</div>
+                <div class="section-detail">Duży numer telefonu 725 119 962 + e-mail. "Nabór trwa cały rok. Zadzwoń — chętnie odpowiemy na wszystkie pytania przed zapisem."</div>
+                <div class="section-tags"><span class="tag tag-cta">CTA telefoniczny</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 6: DOFINANSOWANIE -->
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">6</div>
+          <div class="page-title-group">
+            <div class="page-title">Dofinansowanie</div>
+            <div class="page-url">sobierajskidomek.pl/dofinansowanie</div>
+          </div>
+          <div class="page-badge badge-primary">Priorytet</div>
+        </div>
+        <div class="page-body">
+          <div class="page-goal">
+            <strong>Cel strony:</strong> Aktualnie prawie pusta — ogromna stracona szansa. Dofinansowanie to jeden z głównych czynników decyzyjnych dla rodziców. Ta strona powinna sprzedawać.
+          </div>
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">🏛️</div>
+              <div class="section-content">
+                <div class="section-name">DOFINANSOWANIE Z MIASTA POZNANIA</div>
+                <div class="section-detail">Program "Aktywnie w Żłobku". Opis zadania publicznego: Realizacja zadań Miasta Poznania na rzecz rodziny, macierzyństwa i ochrony praw dziecka. Kto może skorzystać, ile wynosi, jak się ubiegać.</div>
+                <div class="section-tags"><span class="tag tag-info">Informacja</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">🏦</div>
+              <div class="section-content">
+                <div class="section-name">PROGRAMY RZĄDOWE</div>
+                <div class="section-detail">Lista aktualnych programów rządowych dofinansowujących pobyt w żłobku. Aktualizowana regularnie.</div>
+                <div class="section-tags"><span class="tag tag-info">Informacja</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">🪜</div>
+              <div class="section-content">
+                <div class="section-name">JAK UZYSKAĆ DOFINANSOWANIE — Krok po kroku</div>
+                <div class="section-detail">Prosta instrukcja: kto może wnioskować, gdzie złożyć wniosek, jakie dokumenty, kiedy zaczyna obowiązywać. Linki do odpowiednich stron Urzędu Miasta.</div>
+                <div class="section-tags"><span class="tag tag-form">Instrukcja</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">❓</div>
+              <div class="section-content">
+                <div class="section-name">MASZ PYTANIA O DOFINANSOWANIE?</div>
+                <div class="section-detail">"Chętnie pomożemy przejść przez proces dofinansowania. Zadzwoń lub napisz — mamy doświadczenie z wieloma rodzinami."</div>
+                <div class="section-tags"><span class="tag tag-cta">CTA</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 7: GALERIA -->
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">7</div>
+          <div class="page-title-group">
+            <div class="page-title">Galeria</div>
+            <div class="page-url">sobierajskidomek.pl/galeria</div>
+          </div>
+          <div class="page-badge badge-primary">Główna</div>
+        </div>
+        <div class="page-body">
+          <div class="page-goal">
+            <strong>Cel strony:</strong> Pokazać klimat i codzienność żłobka. Rodzice "kupują emocjami" — ciepłe zdjęcia dzieci budują zaufanie bardziej niż jakikolwiek tekst.
+          </div>
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">📸</div>
+              <div class="section-content">
+                <div class="section-name">GALERIA PODZIELONA NA KATEGORIE (zakładki/filtry)</div>
+                <div class="section-detail">
+                  Codzienne życie · Program edukacyjny i zajęcia · Posiłki i kuchnia · Plac zabaw · Bale i uroczystości · Sesje fotograficzne
+                </div>
+                <div class="section-tags"><span class="tag tag-media">Galeria</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">📘</div>
+              <div class="section-content">
+                <div class="section-name">LINK DO FACEBOOKA — Codzienne relacje</div>
+                <div class="section-detail">"Codzienne zdjęcia i relacje z zajęć znajdziesz na naszym Facebooku." Przycisk z ikoną Facebook + link do fanpage'a.</div>
+                <div class="section-tags"><span class="tag tag-info">Social media</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 8: FAQ -->
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">8</div>
+          <div class="page-title-group">
+            <div class="page-title">Często Zadawane Pytania (FAQ)</div>
+            <div class="page-url">sobierajskidomek.pl/faq</div>
+          </div>
+          <div class="page-badge badge-primary">Główna</div>
+        </div>
+        <div class="page-body">
+          <div class="page-goal">
+            <strong>Cel strony:</strong> Skrócić czas odpowiedzi na pytania rodziców i odciążyć telefon. Aktualnie 13 tematów linkuje do osobnych podstron — lepiej: akordeony na jednej stronie.
+          </div>
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">🔽</div>
+              <div class="section-content">
+                <div class="section-name">AKORDEONY WEDŁUG KATEGORII — wszystko na jednej stronie</div>
+                <div class="section-detail">
+                  Kategoria "Zapis i rekrutacja": Wcześniejsza rezerwacja, Nabór elektroniczny, Wizyta w żłobku, Wpisowe. — Kategoria "Pobyt dziecka": Grupy wiekowe, Pierwszy dzień i adaptacja, Wyprawka, Środki higieniczne, Monitoring. — Kategoria "Opieka i bezpieczeństwo": Kadra, Ubezpieczenie, Jedzenie. — Kategoria "Program": Plan dydaktyczny, Zajęcia dodatkowe.
+                </div>
+                <div class="section-tags"><span class="tag tag-info">Self-service</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">📞</div>
+              <div class="section-content">
+                <div class="section-name">CTA: Nie znalazłeś odpowiedzi?</div>
+                <div class="section-detail">Na dole strony: "Zadzwoń do nas — chętnie odpowiemy na każde pytanie." Numer telefonu + e-mail.</div>
+                <div class="section-tags"><span class="tag tag-cta">Fallback CTA</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 9: KONTAKT -->
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">9</div>
+          <div class="page-title-group">
+            <div class="page-title">Kontakt</div>
+            <div class="page-url">sobierajskidomek.pl/kontakt</div>
+          </div>
+          <div class="page-badge badge-primary">Główna</div>
+        </div>
+        <div class="page-body">
+          <div class="page-goal">
+            <strong>Cel strony:</strong> Umożliwić kontakt jak najszybciej i jak najłatwiej — dla każdej lokalizacji osobno.
+          </div>
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">📍</div>
+              <div class="section-content">
+                <div class="section-name">DWA PANELE LOKALIZACJI (side by side)</div>
+                <div class="section-detail">Każdy panel: Nazwa · Adres · Telefon (klikalny) · E-mail (klikalny) · Godziny: pon–pt 7:00–17:30 · Mapa Google embed · Przycisk "Jak dojechać"</div>
+                <div class="section-tags"><span class="tag tag-info">Dane kontaktowe</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">📝</div>
+              <div class="section-content">
+                <div class="section-name">FORMULARZ KONTAKTOWY</div>
+                <div class="section-detail">Pola: Imię i nazwisko · Telefon · E-mail · Wybór lokalizacji (dropdown) · Wiadomość · Checkbox RODO. Prosta, szybka forma kontaktu.</div>
+                <div class="section-tags"><span class="tag tag-form">Formularz</span></div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="section-icon">📘</div>
+              <div class="section-content">
+                <div class="section-name">SOCIAL MEDIA</div>
+                <div class="section-detail">Facebook — codzienne relacje z zajęć. Link z logo FB.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- UTILITY PAGES -->
+  <div class="section-gap">
+    <div class="section-label">Krok 4</div>
+    <div class="section-title">Strony Utility — poza główną nawigacją</div>
+    <div class="section-desc">Te strony istnieją, ale nie należą do głównego menu — są w stopce lub dostępne po logowaniu.</div>
+
+    <div class="two-col">
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">U1</div>
+          <div class="page-title-group">
+            <div class="page-title">Strefa Rodzica</div>
+            <div class="page-url">sobierajskidomek.pl/strefa-rodzica</div>
+          </div>
+          <div class="page-badge badge-parent">Login</div>
+        </div>
+        <div class="page-body">
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">🔑</div>
+              <div class="section-content">
+                <div class="section-name">Panel logowania</div>
+                <div class="section-detail">Dostęp dla zalogowanych rodziców: monitoring, komunikaty, dokumenty. Link "Strefa Rodzica" widoczny w prawym górnym rogu nawigacji — nie w głównym menu.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">U2</div>
+          <div class="page-title-group">
+            <div class="page-title">Praca</div>
+            <div class="page-url">sobierajskidomek.pl/praca</div>
+          </div>
+          <div class="page-badge badge-utility">Stopka</div>
+        </div>
+        <div class="page-body">
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">💼</div>
+              <div class="section-content">
+                <div class="section-name">Ogłoszenie o pracę</div>
+                <div class="section-detail">Szukamy: osoby lubiącej pracę z dziećmi, kreatywne, z ciepłem. Preferowane: studia z wychowywania dzieci lub położnictwa. CV na sobierajskidomek@wp.pl. Warto uzupełnić o konkretne stanowiska jeśli są wolne miejsca.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">U3</div>
+          <div class="page-title-group">
+            <div class="page-title">Regulamin</div>
+            <div class="page-url">sobierajskidomek.pl/regulamin</div>
+          </div>
+          <div class="page-badge badge-utility">Stopka</div>
+        </div>
+        <div class="page-body">
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">📄</div>
+              <div class="section-content">
+                <div class="section-name">Regulamin organizacyjny</div>
+                <div class="section-detail">Pełny regulamin obu lokalizacji (Drwęskiego 13 + Wiosenna 6). Cele, zadania, zasady przyjęcia, ogólne zasady pobytu, organizacja. Dostępny jako PDF do pobrania + wersja HTML. Link TYLKO w stopce — to dokument prawny, nie element nawigacji głównej.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-header">
+          <div class="page-number">U4</div>
+          <div class="page-title-group">
+            <div class="page-title">Polityka Prywatności & Ochrony</div>
+            <div class="page-url">sobierajskidomek.pl/polityka-prywatnosci</div>
+          </div>
+          <div class="page-badge badge-utility">Stopka</div>
+        </div>
+        <div class="page-body">
+          <div class="sections-list">
+            <div class="site-section">
+              <div class="section-icon">🔒</div>
+              <div class="section-content">
+                <div class="section-name">Polityka prywatności + RODO + Cookies</div>
+                <div class="section-detail">Trzy dokumenty prawne połączone na jednej stronie lub z zakładkami. Wyłącznie w stopce — rodzic szuka tego tylko jeśli potrzebuje.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FOOTER STRUCTURE -->
+  <div class="section-gap">
+    <div class="section-label">Krok 5</div>
+    <div class="section-title">Struktura Stopki</div>
+    <div class="section-desc">Stopka jako mapa serwisu — szybki dostęp do wszystkich zasobów.</div>
+
+    <div class="footer-section">
+      <h3>STOPKA — 4 kolumny</h3>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>sobie…Rajski Domek</h4>
+          <ul>
+            <li>Logo + krótki opis</li>
+            <li>Od 2009 w Poznaniu</li>
+            <li>Zarejestrowany od 2013</li>
+            <li>📘 Facebook</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Nawigacja</h4>
+          <ul>
+            <li>O nas</li>
+            <li>Oferta & Program</li>
+            <li>Lokalizacje</li>
+            <li>Rekrutacja & Cennik</li>
+            <li>Dofinansowanie</li>
+            <li>Galeria</li>
+            <li>FAQ</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontakt</h4>
+          <ul>
+            <li>📞 725 119 962</li>
+            <li>✉ sobierajskidomek@wp.pl</li>
+            <li>Drwęskiego 13, Poznań</li>
+            <li>Wiosenna 6, Poznań</li>
+            <li>Pon–Pt 7:00–17:30</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Informacje prawne</h4>
+          <ul>
+            <li>Regulamin</li>
+            <li>Polityka prywatności</li>
+            <li>Cookies</li>
+            <li>Praca — wyślij CV</li>
+            <li>Strefa Rodzica</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PRIORITY -->
+  <div class="section-gap">
+    <div class="section-label">Krok 6</div>
+    <div class="section-title">Priorytety wdrożenia</div>
+    <div class="section-desc">Co zrobić najpierw — lista według wpływu na konwersję i użyteczność.</div>
+
+    <div class="priority-list">
+      <div class="priority-item">
+        <div class="priority-badge p-high">Pilne</div>
+        <div class="pi-text">Przebudowa nawigacji — z 10+ pozycji do 6 + utility bar</div>
+        <div class="pi-note">Natychmiastowy efekt UX</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-badge p-high">Pilne</div>
+        <div class="pi-text">Dodanie cennika na stronę Rekrutacji — aktualnie brak jakichkolwiek cen</div>
+        <div class="pi-note">Blokuje konwersję</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-badge p-high">Pilne</div>
+        <div class="pi-text">Rozbudowanie strony Dofinansowania — aktualnie prawie pusta, a to główny argument sprzedażowy</div>
+        <div class="pi-note">Stracona szansa</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-badge p-high">Pilne</div>
+        <div class="pi-text">Dodanie przycisków CTA (Zapisz dziecko / Zadzwoń) na stronie głównej i kluczowych podstronach</div>
+        <div class="pi-note">Bezpośrednia konwersja</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-badge p-med">Ważne</div>
+        <div class="pi-text">Sekcja "Kadra" ze zdjęciami i opisami opiekunek — rodzice chcą wiedzieć, kto opiekuje się dzieckiem</div>
+        <div class="pi-note">Kluczowe dla zaufania</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-badge p-med">Ważne</div>
+        <div class="pi-text">Przebudowa FAQ — z osobnych podstron na akordeony na jednej stronie</div>
+        <div class="pi-note">UX / self-service</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-badge p-med">Ważne</div>
+        <div class="pi-text">Dedykowana strona Lokalizacje z Google Maps embed i zdjęciami dla każdej placówki</div>
+        <div class="pi-note">Ułatwia wybór</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-badge p-med">Ważne</div>
+        <div class="pi-text">Sekcja opinii rodziców (Google Reviews / Facebook quotes) na stronie głównej i "O nas"</div>
+        <div class="pi-note">Social proof</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-badge p-low">Warto</div>
+        <div class="pi-text">Przebudowa Hero na stronie głównej — zdjęcie, mocny nagłówek, podtytuł, CTA</div>
+        <div class="pi-note">Pierwsze wrażenie</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-badge p-low">Warto</div>
+        <div class="pi-text">Trust bar pod hero: "Zarejestrowany od 2013 · Sanepid · Monitoring · Miasto Poznania"</div>
+        <div class="pi-note">Szybkie zaufanie</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-badge p-low">Warto</div>
+        <div class="pi-text">Formularz kontaktowy na stronie Kontakt (aktualnie tylko dane adresowe)</div>
+        <div class="pi-note">Ułatwia kontakt</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-badge p-low">Warto</div>
+        <div class="pi-text">Przeniesienie Regulaminu i Polityki ochrony z głównego menu do stopki</div>
+        <div class="pi-note">Upraszcza nawigację</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- DOC FOOTER -->
+<div class="doc-footer">
+  <div><strong>sobie…Rajski Domek</strong> — Architektura Strony · UX/UI Blueprint</div>
+  <span>Opracowany na podstawie pełnej analizy sobierajskidomek.pl · Czerwiec 2026</span>
+</div>
+
+</body>
+</html>

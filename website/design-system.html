@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System — sobie…Rajski Domek</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   DESIGN TOKENS — sobie…Rajski Domek
+   Źródło prawdy dla całego projektu. Wszystkie kolory,
+   typografia i spacing zdefiniowane jako CSS variables.
+   ============================================================ */
+
+:root {
+  /* COLORS */
+  --c-primary:       #E8845A;   /* terracotta — main CTA, highlights */
+  --c-primary-dark:  #C96A3E;   /* hover state for primary */
+  --c-primary-soft:  #FDF0E8;   /* light tint backgrounds */
+
+  --c-green:         #5B9E7B;   /* sage green — secondary accent */
+  --c-green-dark:    #3E7A5C;
+  --c-green-soft:    #EAF4EE;
+
+  --c-yellow:        #F5C842;   /* warm yellow — decorative */
+  --c-yellow-soft:   #FDF7E8;
+
+  --c-dark:          #1E1E2E;   /* near-black — headings, top bar */
+  --c-text:          #2D2D3A;   /* body text */
+  --c-muted:         #6B6660;   /* captions, secondary text */
+  --c-border:        #E8E4DE;   /* card borders, dividers */
+
+  --c-bg:            #FBF8F4;   /* warm off-white page background */
+  --c-surface:       #FFFFFF;   /* cards, modals */
+  --c-bg-peach:      #FDF0E8;   /* soft section backgrounds */
+
+  /* TYPOGRAPHY */
+  --font-head:   'Nunito', sans-serif;
+  --font-body:   'Inter', sans-serif;
+
+  /* TYPE SCALE */
+  --t-h1:    52px;
+  --t-h2:    36px;
+  --t-h3:    24px;
+  --t-h4:    18px;
+  --t-body:  15px;
+  --t-sm:    13px;
+  --t-xs:    12px;
+
+  /* LINE HEIGHTS */
+  --lh-heading: 1.15;
+  --lh-body:    1.65;
+
+  /* SPACING */
+  --space-xs:   8px;
+  --space-sm:   16px;
+  --space-md:   24px;
+  --space-lg:   40px;
+  --space-xl:   64px;
+  --space-2xl:  96px;
+
+  /* RADIUS */
+  --r-sm:    8px;
+  --r-md:    16px;
+  --r-lg:    24px;
+  --r-pill:  100px;
+
+  /* SHADOWS */
+  --shadow-sm:  0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md:  0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg:  0 8px 40px rgba(0,0,0,0.12);
+
+  /* LAYOUT */
+  --max-width: 1180px;
+  --nav-height: 80px;
+}
+
+/* ============================================================
+   BASE RESET & GLOBAL
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--c-text);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { text-decoration: none; color: inherit; }
+
+/* ============================================================
+   TYPOGRAPHY CLASSES
+   ============================================================ */
+
+.t-label {
+  font-family: var(--font-body);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--c-primary);
+}
+
+h1, .h1 {
+  font-family: var(--font-head);
+  font-size: var(--t-h1);
+  font-weight: 800;
+  line-height: var(--lh-heading);
+  color: var(--c-dark);
+  letter-spacing: -1px;
+}
+
+h2, .h2 {
+  font-family: var(--font-head);
+  font-size: var(--t-h2);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--c-dark);
+  letter-spacing: -0.5px;
+}
+
+h3, .h3 {
+  font-family: var(--font-head);
+  font-size: var(--t-h3);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--c-dark);
+}
+
+h4, .h4 {
+  font-family: var(--font-head);
+  font-size: var(--t-h4);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--c-dark);
+}
+
+p, .body { font-size: var(--t-body); line-height: var(--lh-body); color: var(--c-text); }
+.text-muted { color: var(--c-muted); }
+.text-sm { font-size: var(--t-sm); }
+.text-xs { font-size: var(--t-xs); }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-body);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--c-primary);
+  color: white;
+  border-color: var(--c-primary);
+}
+.btn-primary:hover {
+  background: var(--c-primary-dark);
+  border-color: var(--c-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(232,132,90,0.35);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--c-primary);
+  border-color: var(--c-primary);
+}
+.btn-secondary:hover {
+  background: var(--c-primary-soft);
+  transform: translateY(-1px);
+}
+
+.btn-dark {
+  background: var(--c-dark);
+  color: white;
+  border-color: var(--c-dark);
+}
+.btn-dark:hover {
+  background: #2d2d4a;
+  transform: translateY(-1px);
+}
+
+.btn-white {
+  background: white;
+  color: var(--c-dark);
+  border-color: white;
+}
+.btn-white:hover {
+  background: var(--c-bg);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--c-muted);
+  border-color: transparent;
+  padding: 13px 16px;
+}
+.btn-ghost:hover { color: var(--c-primary); background: var(--c-primary-soft); }
+
+.btn-sm { padding: 8px 18px; font-size: var(--t-xs); }
+.btn-lg { padding: 17px 36px; font-size: 15px; }
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-md);
+}
+
+.card-dark {
+  background: var(--c-dark);
+  color: white;
+  border: none;
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-md);
+}
+
+.card-primary {
+  background: var(--c-primary);
+  color: white;
+  border: none;
+  border-radius: var(--r-md);
+  padding: var(--space-md);
+}
+
+.card-green {
+  background: var(--c-green);
+  color: white;
+  border: none;
+  border-radius: var(--r-md);
+  padding: var(--space-md);
+}
+
+/* ============================================================
+   BADGES / TAGS
+   ============================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: var(--r-pill);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.badge-primary { background: var(--c-primary-soft); color: var(--c-primary); }
+.badge-green   { background: var(--c-green-soft);   color: var(--c-green); }
+.badge-yellow  { background: var(--c-yellow-soft);  color: #9A7700; }
+.badge-dark    { background: var(--c-dark);          color: white; }
+
+/* ============================================================
+   ICON CIRCLE
+   ============================================================ */
+
+.icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.icon-circle-primary { background: var(--c-primary-soft); }
+.icon-circle-green   { background: var(--c-green-soft); }
+.icon-circle-yellow  { background: var(--c-yellow-soft); }
+.icon-circle-white   { background: rgba(255,255,255,0.2); }
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.section { padding: var(--space-2xl) 0; }
+.section-sm { padding: var(--space-xl) 0; }
+
+.grid-2  { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+.grid-3  { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+.grid-4  { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+
+.flex    { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.gap-sm  { gap: var(--space-sm); }
+.gap-md  { gap: var(--space-md); }
+.gap-lg  { gap: var(--space-lg); }
+
+.text-center { text-align: center; }
+.mb-xs { margin-bottom: var(--space-xs); }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+
+/* ============================================================
+   SHARED NAV COMPONENT
+   ============================================================ */
+
+.topbar {
+  background: var(--c-dark);
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.topbar-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.topbar-contact {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.topbar-contact a {
+  color: #aaa;
+  font-size: var(--t-xs);
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s;
+}
+.topbar-contact a:hover { color: white; }
+
+.topbar-social { display: flex; gap: 10px; }
+.topbar-social a {
+  color: #aaa;
+  font-size: 14px;
+  transition: color 0.15s;
+}
+.topbar-social a:hover { color: var(--c-primary); }
+
+.navbar {
+  background: var(--c-surface);
+  height: var(--nav-height);
+  border-bottom: 1px solid var(--c-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.nav-logo {
+  font-family: var(--font-head);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--c-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.nav-logo .logo-dot { color: var(--c-primary); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: var(--t-sm);
+  font-weight: 500;
+  color: var(--c-muted);
+  padding: 8px 12px;
+  border-radius: var(--r-sm);
+  transition: all 0.15s;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--c-primary);
+  background: var(--c-primary-soft);
+}
+
+.nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+/* ============================================================
+   FOOTER COMPONENT
+   ============================================================ */
+
+.footer {
+  background: var(--c-dark);
+  color: white;
+  padding: var(--space-2xl) 0 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.footer-col-title {
+  font-family: var(--font-head);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-sm);
+}
+
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a {
+  color: #888;
+  font-size: var(--t-sm);
+  transition: color 0.15s;
+}
+.footer-links a:hover { color: var(--c-primary); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 20px 0;
+  text-align: center;
+  color: #555;
+  font-size: var(--t-xs);
+}
+
+/* ============================================================
+   SECTION HEADER (reusable)
+   ============================================================ */
+
+.section-header { margin-bottom: var(--space-lg); }
+.section-header.center { text-align: center; }
+.section-header.center .section-lead { max-width: 560px; margin: 0 auto; }
+
+.section-lead {
+  font-size: var(--t-h4);
+  color: var(--c-muted);
+  margin-top: var(--space-xs);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* ============================================================
+   PHOTO PLACEHOLDER
+   ============================================================ */
+
+.photo-placeholder {
+  background: linear-gradient(135deg, #f0e8e0, #e8d8c8);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-muted);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4c0b0' fill-opacity='0.3'%3E%3Ccircle cx='20' cy='16' r='6'/%3E%3Cpath d='M6 34c0-7.7 6.3-14 14-14s14 6.3 14 14'/%3E%3C/g%3E%3C/svg%3E") center/60px no-repeat;
+}
+
+.photo-placeholder span {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.5);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+/* ============================================================
+   ACCORDION
+   ============================================================ */
+
+.accordion-item {
+  border-bottom: 1px solid var(--c-border);
+}
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  font-weight: 600;
+  color: var(--c-dark);
+  text-align: left;
+  gap: 16px;
+}
+.accordion-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--c-primary-soft);
+  color: var(--c-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.accordion-item.open .accordion-icon { transform: rotate(45deg); }
+.accordion-body {
+  display: none;
+  padding: 0 0 18px;
+  color: var(--c-muted);
+  font-size: var(--t-sm);
+  line-height: 1.7;
+  border-left: 3px solid var(--c-green);
+  padding-left: 16px;
+  margin-bottom: 4px;
+}
+.accordion-item.open .accordion-body { display: block; }
+
+/* ============================================================
+   STYLE GUIDE PAGE — only for this file
+   ============================================================ */
+
+.sg-header {
+  background: var(--c-dark);
+  padding: 48px 0;
+  color: white;
+}
+.sg-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--c-primary);
+  margin-bottom: 10px;
+}
+.sg-section { padding: 56px 0; border-bottom: 1px solid var(--c-border); }
+.sg-section:last-child { border-bottom: none; }
+.sg-section-title {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sg-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--c-border);
+}
+
+.color-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; }
+.color-swatch {
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+}
+.color-swatch-preview { height: 64px; }
+.color-swatch-info {
+  padding: 8px 10px;
+  background: white;
+}
+.color-swatch-name { font-size: 11px; font-weight: 600; color: var(--c-dark); }
+.color-swatch-hex { font-size: 10px; color: var(--c-muted); font-family: monospace; }
+
+.type-demo { display: flex; flex-direction: column; gap: 20px; }
+.type-row { display: flex; align-items: baseline; gap: 24px; border-bottom: 1px solid var(--c-border); padding-bottom: 20px; }
+.type-meta { width: 120px; flex-shrink: 0; }
+.type-meta-name { font-size: 11px; font-weight: 600; color: var(--c-muted); }
+.type-meta-spec { font-size: 10px; color: #bbb; font-family: monospace; margin-top: 2px; }
+
+.btn-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.card-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.badge-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+.component-dark { background: var(--c-dark); padding: 24px; border-radius: var(--r-md); }
+
+</style>
+</head>
+<body>
+
+<!-- STYLE GUIDE HEADER -->
+<div class="sg-header">
+  <div class="container">
+    <div class="sg-label">Design System</div>
+    <h1 style="color:white; font-family:'Nunito',sans-serif; font-size:36px; font-weight:800; margin-bottom:8px;">sobie…Rajski Domek</h1>
+    <p style="color:#888; font-size:15px;">Żłobek Poznań — Visual Design Tokens & Component Library</p>
+  </div>
+</div>
+
+<!-- TOPBAR PREVIEW -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <a href="#">📞 725 119 962</a>
+      <a href="#">✉ sobierajskidomek@wp.pl</a>
+      <a href="#">📍 Podolany & Grunwald, Poznań</a>
+    </div>
+    <div class="topbar-social">
+      <a href="#">f</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR PREVIEW -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="nav-logo">
+      🌿 sobie…<span class="logo-dot">Rajski</span> Domek
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">O nas</a></li>
+      <li><a href="#">Oferta</a></li>
+      <li><a href="#">Lokalizacje</a></li>
+      <li><a href="#">Rekrutacja</a></li>
+      <li><a href="#">Galeria</a></li>
+      <li><a href="#">Kontakt</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#" class="btn btn-ghost btn-sm">Strefa Rodzica</a>
+      <a href="#" class="btn btn-primary btn-sm">Zapisz dziecko →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- STYLE GUIDE BODY -->
+<div class="container">
+
+  <!-- COLORS -->
+  <div class="sg-section">
+    <div class="sg-section-title">01 / Paleta kolorów</div>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#E8845A;"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Primary</div>
+          <div class="color-swatch-hex">#E8845A</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#C96A3E;"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Primary Dark</div>
+          <div class="color-swatch-hex">#C96A3E</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#FDF0E8; border: 1px solid #eee;"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Primary Soft</div>
+          <div class="color-swatch-hex">#FDF0E8</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#5B9E7B;"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Green</div>
+          <div class="color-swatch-hex">#5B9E7B</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#EAF4EE; border: 1px solid #eee;"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Green Soft</div>
+          <div class="color-swatch-hex">#EAF4EE</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#F5C842;"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Yellow</div>
+          <div class="color-swatch-hex">#F5C842</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#1E1E2E;"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Dark</div>
+          <div class="color-swatch-hex">#1E1E2E</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#FBF8F4; border: 1px solid #eee;"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Background</div>
+          <div class="color-swatch-hex">#FBF8F4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="sg-section">
+    <div class="sg-section-title">02 / Typografia</div>
+    <div class="type-demo">
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta-name">H1 — Heading</div>
+          <div class="type-meta-spec">Nunito 800 · 52px</div>
+        </div>
+        <h1>Twoje dziecko w dobrych rękach.</h1>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta-name">H2 — Section</div>
+          <div class="type-meta-spec">Nunito 700 · 36px</div>
+        </div>
+        <h2>Dlaczego warto nam zaufać?</h2>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta-name">H3 — Card</div>
+          <div class="type-meta-spec">Nunito 700 · 24px</div>
+        </div>
+        <h3>Domowa kuchnia z certyfikatem</h3>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta-name">H4 — Lead</div>
+          <div class="type-meta-spec">Nunito 700 · 18px</div>
+        </div>
+        <h4>Prywatny żłobek · 2 lokalizacje · Cały rok</h4>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta-name">Label</div>
+          <div class="type-meta-spec">Inter 700 · 12px · caps</div>
+        </div>
+        <div class="t-label">Nasza oferta</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta-name">Body</div>
+          <div class="type-meta-spec">Inter 400 · 15px</div>
+        </div>
+        <p>W naszych żłobkach pozwalamy dzieciom rozwijać się w sposób, na jaki pozwalają naturalne możliwości i predyspozycje. Do każdego maluszka podchodzimy indywidualnie.</p>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta-name">Caption</div>
+          <div class="type-meta-spec">Inter 400 · 13px · muted</div>
+        </div>
+        <p class="text-muted text-sm">Nasze placówki spełniają wszystkie wymagania Ustawy o opiece nad dziećmi do lat 3.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="sg-section">
+    <div class="sg-section-title">03 / Przyciski</div>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div class="btn-row">
+        <a href="#" class="btn btn-primary btn-lg">Zapisz dziecko →</a>
+        <a href="#" class="btn btn-primary">Zapisz dziecko →</a>
+        <a href="#" class="btn btn-primary btn-sm">Zapisz dziecko →</a>
+      </div>
+      <div class="btn-row">
+        <a href="#" class="btn btn-secondary btn-lg">Zadzwoń: 725 119 962</a>
+        <a href="#" class="btn btn-secondary">Dowiedz się więcej</a>
+        <a href="#" class="btn btn-secondary btn-sm">Zobacz galerię</a>
+      </div>
+      <div class="btn-row">
+        <a href="#" class="btn btn-dark">Strefa Rodzica</a>
+        <a href="#" class="btn btn-ghost">Sprawdź trasę →</a>
+      </div>
+      <div class="component-dark">
+        <div class="btn-row">
+          <a href="#" class="btn btn-white btn-lg">Wypełnij formularz →</a>
+          <a href="#" class="btn btn-white">Zadzwoń teraz</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARDS -->
+  <div class="sg-section">
+    <div class="sg-section-title">04 / Karty</div>
+    <div class="card-row">
+      <div class="card">
+        <div class="icon-circle icon-circle-primary mb-sm">🍽️</div>
+        <h4 class="mb-xs">Domowa kuchnia</h4>
+        <p class="text-muted text-sm">Własna kuchnia z certyfikatem Sanepidu. Świeże posiłki codziennie.</p>
+      </div>
+      <div class="card" style="border-top: 4px solid var(--c-primary);">
+        <div class="icon-circle icon-circle-green mb-sm">👩‍⚕️</div>
+        <h4 class="mb-xs">Certyfikowana kadra</h4>
+        <p class="text-muted text-sm">Położne, pedagodzy i psycholodzy dziecięcy.</p>
+      </div>
+      <div class="card-primary" style="border-radius: var(--r-md);">
+        <div class="icon-circle icon-circle-white mb-sm">📹</div>
+        <h4 style="color:white;" class="mb-xs">Monitoring on-line</h4>
+        <p style="color:rgba(255,255,255,0.8);" class="text-sm">Podgląd na żywo dla rodziców przez cały dzień.</p>
+      </div>
+      <div class="card-dark" style="border-radius: var(--r-md);">
+        <div class="icon-circle icon-circle-white mb-sm">🎵</div>
+        <h4 style="color:white;" class="mb-xs">Bogaty program</h4>
+        <p style="color:#888;" class="text-sm">12 aktywności edukacyjnych każdego tygodnia.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BADGES & ICON CIRCLES -->
+  <div class="sg-section">
+    <div class="sg-section-title">05 / Badges & Ikony</div>
+    <div class="badge-row mb-md">
+      <span class="badge badge-primary">Od 2013 roku</span>
+      <span class="badge badge-green">✓ Certyfikat Sanepidu</span>
+      <span class="badge badge-yellow">Dofinansowanie</span>
+      <span class="badge badge-dark">Rekrutacja otwarta</span>
+    </div>
+    <div class="badge-row">
+      <div class="icon-circle icon-circle-primary">🎵</div>
+      <div class="icon-circle icon-circle-green">🎭</div>
+      <div class="icon-circle icon-circle-yellow">🇬🇧</div>
+      <div class="icon-circle icon-circle-primary">🎨</div>
+      <div class="icon-circle icon-circle-green">🏃</div>
+      <div class="icon-circle icon-circle-yellow">📸</div>
+    </div>
+  </div>
+
+  <!-- ACCORDION -->
+  <div class="sg-section">
+    <div class="sg-section-title">06 / Akordeony (FAQ)</div>
+    <div style="max-width: 680px;">
+      <div class="accordion-item open">
+        <button class="accordion-trigger">
+          Ile kosztuje miesięczny pobyt?
+          <div class="accordion-icon">+</div>
+        </button>
+        <div class="accordion-body">
+          Miesięczna opłata obejmuje całodzienny pobyt (do 10h), pełne wyżywienie (śniadanie, obiad, podwieczorek), wszystkie zajęcia i materiały, ubezpieczenie NNW, pieluchy i środki higieny oraz dostęp do monitoringu online. Skontaktuj się z nami po aktualny cennik.
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          Od kiedy można zapisać dziecko?
+          <div class="accordion-icon">+</div>
+        </button>
+        <div class="accordion-body">Nabór trwa cały rok. Przyjmujemy dzieci od 20 tygodnia życia.</div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">
+          Jak wygląda proces zapisu?
+          <div class="accordion-icon">+</div>
+        </button>
+        <div class="accordion-body">Wypełnij formularz w systemie Nabór Miasta Poznania, wyślij PDF na nasz e-mail, podpisz umowę i wpłać wpisowe.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO PLACEHOLDERS -->
+  <div class="sg-section">
+    <div class="sg-section-title">07 / Placeholdery zdjęć</div>
+    <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; gap:16px; height:280px;">
+      <div class="photo-placeholder" style="height:100%;"><span>Zdjęcie — Hero</span></div>
+      <div class="photo-placeholder" style="height:100%;"><span>Dzieci</span></div>
+      <div class="photo-placeholder" style="height:100%;"><span>Kuchnia</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER PREVIEW -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo mb-sm" style="color:white;">🌿 sobie…<span class="logo-dot">Rajski</span> Domek</div>
+        <p style="color:#888; font-size:13px; line-height:1.7; margin-bottom:16px;">Ciepłe miejsce dla Twojego maluszka. Żłobek prywatny w Poznaniu od 2009 roku.</p>
+        <a href="#" style="color:var(--c-primary); font-size:13px; font-weight:600;">📘 Facebook — codzienne relacje</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Nawigacja</div>
+        <ul class="footer-links">
+          <li><a href="#">O nas</a></li>
+          <li><a href="#">Oferta & Program</a></li>
+          <li><a href="#">Lokalizacje</a></li>
+          <li><a href="#">Rekrutacja & Cennik</a></li>
+          <li><a href="#">Dofinansowanie</a></li>
+          <li><a href="#">Galeria</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Kontakt</div>
+        <ul class="footer-links">
+          <li><a href="#">📞 725 119 962</a></li>
+          <li><a href="#">✉ sobierajskidomek@wp.pl</a></li>
+          <li style="color:#666; font-size:13px; margin-top:8px;">ul. Drwęskiego 13<br>Poznań 60-688</li>
+          <li style="color:#666; font-size:13px; margin-top:8px;">ul. Wiosenna 6<br>Poznań 60-592</li>
+          <li style="color:#666; font-size:13px; margin-top:8px;">Pon–Pt · 7:00–17:30</li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Informacje</div>
+        <ul class="footer-links">
+          <li><a href="#">Regulamin</a></li>
+          <li><a href="#">Polityka prywatności</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Praca — wyślij CV</a></li>
+          <li><a href="#">Strefa Rodzica</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      © 2009–2026 sobie…Rajski Domek · Żłobek Poznań · Podolany, Grunwald, Ogrody
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Accordion toggle
+  document.querySelectorAll('.accordion-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.accordion-item');
+      item.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>
