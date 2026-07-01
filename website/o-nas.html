@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
@@ -16,7 +16,7 @@
   --c-teal-frame:   #BECFDA;
   --c-bg-cream:     #F2E5CC;
   --c-bg-topbar:    #D8E8EF;
-  --c-dark:         #1A2B35;
+  --c-dark:         #1D3E44;
   --c-text:         #3A4A54;
   --c-muted:        #7A8E98;
   --c-border:       #E2DDD6;
@@ -69,7 +69,12 @@ h4{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--c-dar
 /* NAVBAR */
 .navbar{background:var(--c-surface);height:80px;border-bottom:1px solid var(--c-border);position:sticky;top:0;z-index:200;box-shadow:var(--shadow-sm);}
 .navbar .container{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;}
-.nav-logo{font-family:var(--font-head);color:var(--c-teal);display:flex;flex-direction:column;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0;text-decoration:none;}
+.nav-logo{font-family:var(--font-head);display:flex;align-items:center;gap:11px;white-space:nowrap;flex-shrink:0;text-decoration:none;}
+.logo-mark{width:40px;height:40px;background:linear-gradient(135deg,var(--c-teal) 0%,var(--c-teal-dark) 100%);border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 10px rgba(106,170,184,0.32);}
+.logo-words{display:flex;flex-direction:column;gap:2px;line-height:1;}
+.logo-tag{font-size:10.5px;font-weight:700;color:var(--c-teal-dark);letter-spacing:0.2px;}
+.logo-name{font-size:16.5px;font-weight:900;color:var(--c-dark);letter-spacing:-0.5px;line-height:1;}
+.logo-name .accent{color:var(--c-primary);}
 .nav-logo-text{font-size:13px;font-weight:800;color:var(--c-dark);letter-spacing:-0.2px;}
 .nav-links{display:flex;align-items:center;gap:2px;list-style:none;}
 .nav-links a{font-size:14px;font-weight:500;color:var(--c-text);padding:7px 13px;border-radius:var(--r-sm);transition:all 0.15s;}
@@ -229,7 +234,7 @@ h4{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--c-dar
 .mobile-nav.open{display:flex;align-items:flex-start;justify-content:flex-end;}
 .mobile-nav-panel{background:var(--c-surface);width:280px;height:100%;overflow-y:auto;padding:28px 24px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:0;}
 .mobile-nav-close{align-self:flex-end;background:none;border:none;cursor:pointer;padding:6px;color:var(--c-muted);margin-bottom:16px;}
-.mobile-nav-logo{font-family:var(--font-head);font-size:18px;font-weight:900;color:var(--c-teal);margin-bottom:28px;}
+.mobile-nav-logo{font-family:var(--font-head);display:flex;align-items:center;gap:11px;margin-bottom:28px;}
 .mobile-nav-logo .accent{color:var(--c-primary);}
 .mobile-nav-links{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:28px;}
 .mobile-nav-links a{display:block;padding:11px 14px;font-size:15px;font-weight:600;color:var(--c-text);border-radius:var(--r-sm);transition:all 0.15s;}
@@ -300,9 +305,12 @@ h4{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--c-dar
   <div class="container">
     <a href="index.html" class="nav-logo">
       <div class="logo-mark">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#6AAAB8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 4L21 10.5V21H15.5V15H8.5V21H3V10.5Z" fill="white" opacity="0.95"/><circle cx="19.5" cy="5.5" r="2.5" fill="#F07838"/></svg>
       </div>
-      sobie…<span class="accent">Rajski</span>&nbsp;Domek
+      <div class="logo-words">
+        <span class="logo-tag">sobie…</span>
+        <span class="logo-name"><span class="accent">Rajski</span> Domek</span>
+      </div>
     </a>
     <ul class="nav-links">
       <li><a href="o-nas.html" class="active">O nas</a></li>
@@ -328,7 +336,7 @@ h4{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--c-dar
     <button class="mobile-nav-close" onclick="closeMobileNav()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <div class="mobile-nav-logo">sobie&#8230;<span class="accent">Rajski</span>&nbsp;Domek</div>
+    <div class="mobile-nav-logo"><div class="logo-mark" style="width:36px;height:36px;border-radius:9px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 4L21 10.5V21H15.5V15H8.5V21H3V10.5Z" fill="white" opacity="0.95"/><circle cx="19.5" cy="5.5" r="2.5" fill="#F07838"/></svg></div><div class="logo-words"><span class="logo-tag">sobie…</span><span class="logo-name"><span class="accent">Rajski</span> Domek</span></div></div>
     <ul class="mobile-nav-links">
       <li><a href="o-nas.html">O nas</a></li>
       <li><a href="oferta.html">Oferta</a></li>
@@ -673,11 +681,14 @@ h4{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--c-dar
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="nav-logo" style="color:white;">
-          <div class="logo-mark" style="background:rgba(106,170,184,0.15);">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6AAAB8" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div class="nav-logo">
+          <div class="logo-mark" style="background:rgba(106,170,184,0.22);box-shadow:none;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 4L21 10.5V21H15.5V15H8.5V21H3V10.5Z" fill="white" opacity="0.85"/><circle cx="19.5" cy="5.5" r="2.5" fill="#F07838"/></svg>
           </div>
-          sobie…<span class="accent">Rajski</span>&nbsp;Domek
+          <div class="logo-words">
+            <span class="logo-tag" style="color:rgba(255,255,255,0.5);">sobie…</span>
+            <span class="logo-name" style="color:white;"><span class="accent">Rajski</span> Domek</span>
+          </div>
         </div>
         <p>Ciepłe miejsce dla Twojego maluszka w sercu Poznania. Żłobek prywatny od 2009 roku.</p>
         <a href="https://www.facebook.com/Sobierajskidomek1/" class="footer-fb-link" target="_blank">
@@ -722,17 +733,4 @@ h4{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--c-dar
           <li><a href="#">Strefa Rodzica</a></li>
         </ul>
       </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="container">
-      <p>&copy; 2009–2026 sobie…Rajski Domek &middot; Żłobek prywatny Poznań &middot; Podolany, Grunwald, Ogrody</p>
-    </div>
-  </div>
-</footer>
-
-<script>
-const reveals=document.querySelectorAll('.reveal');
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});
-},{threshold:0.1,rootMargin:'0px 0px -40px 0px'}
+ 
